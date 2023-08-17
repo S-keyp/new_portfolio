@@ -1,9 +1,11 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import MainCanvas from './components/MainCanvas.vue'
 </script>
 
 <template>
   <div>
+    <h1>Yo wazzup world?</h1>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
@@ -12,6 +14,7 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+  <MainCanvas />
 </template>
 
 <style scoped>
