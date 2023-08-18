@@ -9,6 +9,9 @@
                 ctx: null as CanvasRenderingContext2D || null,
             }
         },
+
+
+
         methods: {
             resizeCanvas(){
                 cancelAnimationFrame(this.flowField.animationId)
@@ -17,6 +20,9 @@
                 this.flowField.animate()            
             }
         },
+
+
+
         computed:{
             canvasWidth(){
                 return this.flowField ? this.flowField.width : 100
@@ -25,6 +31,9 @@
                 return this.flowField ? this.flowField.height : 100
             },
         },
+
+
+        
         mounted() {
 
             this.canvas = this.$refs.canvas
