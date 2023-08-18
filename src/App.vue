@@ -4,7 +4,7 @@ import MainCanvas from './components/MainCanvas.vue'
 </script>
 
 <template>
-  <div>
+  <!-- <div>
     <h1>Yo wazzup world?</h1>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -13,7 +13,7 @@ import MainCanvas from './components/MainCanvas.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <HelloWorld msg="Vite + Vue" /> -->
   <MainCanvas />
 </template>
 
