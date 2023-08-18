@@ -17,21 +17,13 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
             resizeCanvas(){
                 
             },
-
-            init(){
-                for(let i = 0; i < 10; i++){
-                    this.arrayToSort.push((Math.random() * 20).toFixed(3))
-                }
-            },
         },
 
 
 
         computed:{
 
-            draw(x: number, y: number){
-                // this.ctx.b
-            }
+           
         },
 
 
@@ -40,13 +32,11 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
 
             this.canvas = this.$refs.canvas1 as HTMLCanvasElement
             this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D
-            const CANVAS_WIDTH = 300
-            const CANVAS_HEIGHT = 150
+            const CANVAS_WIDTH = 700
+            const CANVAS_HEIGHT = 500
             
             const sorterCanvas = new SorterCanvas(this.canvas, this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT)
             
-
-            this.init()
             
             console.log(`${this.arrayToSort}`)
             
@@ -54,7 +44,7 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
     }
 </script>
 <template>
-    <canvas ref="canvas1" id="canvas1"></canvas>
+    <canvas ref="canvas1" id="canvas1" width="700" height="500"></canvas>
 </template>
 
 <style scoped>

@@ -3,7 +3,6 @@ export default abstract class AbstractCanvas {
     ctx: CanvasRenderingContext2D
     height: number
     width: number
-
     animationId: number
 
     constructor( canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, width: number, height: number ) {
@@ -14,7 +13,7 @@ export default abstract class AbstractCanvas {
     }
 
 
-    draw(x: number, y: number): void {}
+    draw(...args): void {}
 
     animate(): void {}
 
