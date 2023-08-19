@@ -1,55 +1,55 @@
 <script lang="ts">
-    import FlowFieldEffect from './../classes/FlowFieldEffect.ts'
+import FlowFieldEffect from './../classes/FlowFieldEffect.ts'
 
-    export default {
-        data(){
-            return{
-                flowField: null as FlowFieldEffect || null,
-                canvas: null as HTMLCanvasElement || null,
-                ctx: null as CanvasRenderingContext2D || null,
-            }
+export default {
+    data(){
+        return{
+            flowField: null as FlowFieldEffect || null,
+            canvas: null as HTMLCanvasElement || null,
+            ctx: null as CanvasRenderingContext2D || null,
+        }
+    },
+
+
+
+    methods: {
+        resizeCanvas(){
+            this.flowField.resizeCanvas(window.innerWidth, window.innerHeight)      
         },
+    },
 
 
 
-        methods: {
-            resizeCanvas(){
-                cancelAnimationFrame(this.flowField.animationId)
-                this.flowField.resizeFlowEffect(window.innerWidth, window.innerHeight)
-                this.flowField = new FlowFieldEffect(this.ctx, this.canvas.width, this.canvas.height) as FlowFieldEffect
-                this.flowField.animate()            
-            }
+    computed:{
+        canvasWidth(){
+            return window.innerWidth
         },
+        canvasHeight(){
+            return window.innerHeight
+        }
+    },
 
 
+    
+    mounted() {
 
-        computed:{
-            canvasWidth(){
-                return this.flowField ? this.flowField.width : 100
-            },
-            canvasHeight(){
-                return this.flowField ? this.flowField.height : 100
-            },
-        },
-
-
+        this.canvas = this.$refs.canvas as HTMLCanvasElement
+        this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D
+        const CANVAS_WIDTH = window.innerWidth // 700
+        const CANVAS_HEIGHT = window.innerHeight // 500
         
-        mounted() {
-
-            this.canvas = this.$refs.canvas
-            this.ctx = this.canvas.getContext("2d")
-            
-            this.canvas.width = window.innerWidth
-            this.canvas.height = window.innerHeight
-            
-            this.flowField = new FlowFieldEffect(this.ctx, this.canvas.width, this.canvas.height) as FlowFieldEffect
-            this.flowField.animate()
-            
-            this.resizeCanvas()
-            window.addEventListener('resize', this.resizeCanvas);
-            
-        },
-    }
+        
+        this.flowField = new FlowFieldEffect(this.canvas, this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT) as FlowFieldEffect
+        
+        
+        window.addEventListener('resize', this.resizeCanvas)    
+        this.canvas.addEventListener('mousemove', (e: MouseEvent) => {
+            this.flowField.setMousePosition(e.clientX, e.clientY)
+            console.log(e)
+        })   
+        
+    },
+}
 </script>
 <template>
     <canvas ref="canvas" id="canvas" :width="canvasWidth" :height="canvasHeight"></canvas>
