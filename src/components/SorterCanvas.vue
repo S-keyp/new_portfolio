@@ -38,7 +38,6 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
             const sorterCanvas = new SorterCanvas(this.canvas, this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT)
             
             
-            console.log(`${this.arrayToSort}`)
             
         },
     }

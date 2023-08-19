@@ -15,9 +15,14 @@ export default class FlowFieldEffect extends AbstractCanvas {
         this.animate()
 
 
-        setTimeout( ()=> {
-            this.sorter()
-        }, 2500)
+        // TEST SORTING
+        // setTimeout( ()=> {
+        //     this.bulleSorting()
+        // }, 2500)
+
+        // setInterval( ()=> {
+        //     this.insertionSorting()
+        // }, 2500)
 
     }
 
@@ -32,7 +37,20 @@ export default class FlowFieldEffect extends AbstractCanvas {
         return a < b 
     }
 
-    sorter(){
+    insertionSorting(){
+        for(let i = 1; i < this.grid.length; i++){
+            let j = i
+            while( j > 0 && this.grid[j - 1] > this.grid[j]){
+                let temp = this.grid[j]
+                let temp1 = this.grid[j - 1]
+                this.grid[j] = temp1
+                this.grid[j - 1] = temp
+                j--
+            }
+        }
+    }
+
+    bulleSorting(){
         for(let i = this.grid.length; i > 1; i--){
             for(let j = 0; j < i - 1; j++){
                 if(this.compare(this.grid[j + 1], this.grid[j])){
@@ -51,10 +69,9 @@ export default class FlowFieldEffect extends AbstractCanvas {
     draw(x: number, y: number, cellValue: number): void { 
 
         const colorValue = Math.floor(cellValue * 360) // 360
-        console.log(cellValue * 360)
         // this.ctx.fillStyle = `hsl( ${colorValue} ${(1 - cellValue) * 100}% ${cellValue * 100}% / ${cellValue} )`
 
-        const saturation = 100 - cellValue * 100; // Reverse the value for better contrast
+        const saturation = 100 // - cellValue * 100; // Reverse the value for better contrast
         const lightness = 50 // cellValue * 100; // Adjust as needed
 
         const my_gradient = this.ctx.createLinearGradient(x, y, x, cellValue * this.height);
