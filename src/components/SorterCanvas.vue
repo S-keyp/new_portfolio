@@ -5,6 +5,7 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
     export default {
         data(){
             return{
+                sorterCanvas: null as SorterCanvas || null,
                 canvas: null as HTMLCanvasElement || null,
                 ctx: null as CanvasRenderingContext2D || null,
                 arrayToSort: [] as Array<number> || null
@@ -15,7 +16,8 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
 
         methods: {
             resizeCanvas(){
-                
+                this.sorterCanvas.resizeCanvas(window.innerWidth, window.innerHeight)
+                console.log('sorterCanvas: ',this.sorterCanvas.width, this.sorterCanvas.height)
             },
         },
 
@@ -32,10 +34,12 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
 
             this.canvas = this.$refs.canvas1 as HTMLCanvasElement
             this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D
-            const CANVAS_WIDTH = 700
-            const CANVAS_HEIGHT = 500
+            const CANVAS_WIDTH = window.innerWidth // 700
+            const CANVAS_HEIGHT = window.innerHeight // 500
             
-            const sorterCanvas = new SorterCanvas(this.canvas, this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT)
+            this.sorterCanvas = new SorterCanvas(this.canvas, this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT)
+
+            window.addEventListener('resize', this.resizeCanvas)
             
             
             
@@ -52,6 +56,5 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
     top: 0;
     left: 0;
     background: #000;
-   
 }
 </style>

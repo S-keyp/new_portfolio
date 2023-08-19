@@ -16,9 +16,9 @@ export default class FlowFieldEffect extends AbstractCanvas {
 
 
         // TEST SORTING
-        setTimeout( ()=> {
-            this.bulleSorting()
-        }, 2500)
+        // setTimeout( ()=> {
+        //     this.bulleSorting()
+        // }, 2500)
 
         // setInterval( ()=> {
         //     this.insertionSorting()
@@ -27,7 +27,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     init(){
-        for(let i = 0; i < 100; i++){
+        for(let i = 0; i < 50; i++){
             this.grid.push((Math.random()).toFixed(3))
         }
         this.cellWidth = this.width / this.grid.length
@@ -88,8 +88,16 @@ export default class FlowFieldEffect extends AbstractCanvas {
 
         for(let i= 0; i < this.grid.length; i++) {
             this.draw(i * this.cellWidth, this.height - 5, this.grid[i])
+            // console.log(this.height)
         }
         this.animationId = requestAnimationFrame(this.animate.bind(this))
+    }
+
+    resizeCanvas(width: number, height: number): void{
+        if(width > 1.25 * height){
+            this.width = width
+            this.height = height
+        }
     }
 
 
