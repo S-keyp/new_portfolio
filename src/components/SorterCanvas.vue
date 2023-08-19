@@ -24,7 +24,12 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
 
 
         computed:{
-
+            canvasWidth(){
+                return window.innerWidth
+            },
+            canvasHeight(){
+                return window.innerHeight
+            }
            
         },
 
@@ -47,7 +52,7 @@ import SorterCanvas from './../classes/SorterCanvas.ts'
     }
 </script>
 <template>
-    <canvas ref="canvas1" id="canvas1" width="700" height="500"></canvas>
+    <canvas ref="canvas1" id="canvas1" :width="canvasWidth" :height="canvasHeight"></canvas>
 </template>
 
 <style scoped>

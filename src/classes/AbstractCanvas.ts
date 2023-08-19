@@ -17,5 +17,6 @@ export default abstract class AbstractCanvas {
 
     animate(): void {}
 
+    resizeCanvas(width: number, height: number): void {}
 
 }
