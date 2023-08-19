@@ -16,9 +16,9 @@ export default class FlowFieldEffect extends AbstractCanvas {
 
 
         // TEST SORTING
-        // setTimeout( ()=> {
-        //     this.bulleSorting()
-        // }, 2500)
+        setTimeout( ()=> {
+            this.bulleSorting()
+        }, 2500)
 
         // setInterval( ()=> {
         //     this.insertionSorting()
@@ -79,7 +79,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
         my_gradient.addColorStop(1, `hsl( ${colorValue}deg ${saturation}% ${.5 * lightness}% )`);
         this.ctx.fillStyle = my_gradient;
 
-        this.ctx.fillRect(x, y, this.cellWidth, cellValue * this.height - 5)
+        this.ctx.fillRect(x, y, this.cellWidth, -cellValue * this.height)
 
     }
 
@@ -87,7 +87,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
         this.ctx.clearRect(0, 0, this.width, this.height)
 
         for(let i= 0; i < this.grid.length; i++) {
-            this.draw(i * this.cellWidth, 5, this.grid[i])
+            this.draw(i * this.cellWidth, this.height - 5, this.grid[i])
         }
         this.animationId = requestAnimationFrame(this.animate.bind(this))
     }
