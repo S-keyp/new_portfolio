@@ -94,7 +94,8 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     resizeCanvas(width: number, height: number): void{
-        if(width > 1.25 * height){
+        // ajouter 2ème condition pour s'assurer que ça reste un rectangle
+        if(width > 1.25 * height ){
             this.width = width
             this.height = height
         }
