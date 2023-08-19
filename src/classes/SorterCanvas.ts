@@ -50,13 +50,18 @@ export default class FlowFieldEffect extends AbstractCanvas {
 
     draw(x: number, y: number, cellValue: number): void { 
 
-        const colorValue = Math.floor(cellValue * 360)
+        const colorValue = Math.floor(cellValue * 360) // 360
+        console.log(cellValue * 360)
         // this.ctx.fillStyle = `hsl( ${colorValue} ${(1 - cellValue) * 100}% ${cellValue * 100}% / ${cellValue} )`
 
-        const my_gradient = this.ctx.createLinearGradient(x, y, x, cellValue * this.height - 10);
-        my_gradient.addColorStop(0, `hsl( ${colorValue}, ${(cellValue) * 100}%, ${1 - cellValue * 100}% )`);
-        my_gradient.addColorStop(1, `hsl( ${colorValue} ${(1 - cellValue) * 100}% ${(cellValue) * 100}% / ${cellValue} )`);
+        const saturation = 100 - cellValue * 100; // Reverse the value for better contrast
+        const lightness = 50 // cellValue * 100; // Adjust as needed
+
+        const my_gradient = this.ctx.createLinearGradient(x, y, x, cellValue * this.height);
+        my_gradient.addColorStop(0, `hsl( ${colorValue}deg ${saturation}% ${lightness}% )`);
+        my_gradient.addColorStop(1, `hsl( ${colorValue}deg ${saturation}% ${.5 * lightness}% )`);
         this.ctx.fillStyle = my_gradient;
+
         this.ctx.fillRect(x, y, this.cellWidth, cellValue * this.height - 5)
 
     }
