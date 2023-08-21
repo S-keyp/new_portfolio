@@ -48,8 +48,11 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     setMousePosition(x: number, y: number){
-        this.mouse.x = x
-        this.mouse.y = y
+        this.mouse.x = this.width / 2
+        this.mouse.y = this.height / 2
+        // JUST HAVE TO UNCOMMENT BELOW TO TRACK MOUSE
+        // this.mouse.x = x
+        // this.mouse.y = y
     }
 
     drawLine(angle: number, x: number, y: number){

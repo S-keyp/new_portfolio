@@ -14,7 +14,11 @@ export default {
 
     methods: {
         resizeCanvas(){
-            this.flowField.resizeCanvas(window.innerWidth, window.innerHeight)      
+            cancelAnimationFrame(this.flowField.animationId)
+            this.canvas.width = window.innerWidth
+            this.canvas.height = window.innerHeight
+            this.flowField = new FlowFieldEffect(this.canvas, this.ctx,  this.canvas.width,  this.canvas.height) as FlowFieldEffect
+            // this.flowField.resizeCanvas(window.innerWidth, window.innerHeight)   
         },
     },
 
@@ -22,6 +26,7 @@ export default {
 
     computed:{
         canvasWidth(){
+            console.log(window.innerWidth)
             return window.innerWidth
         },
         canvasHeight(){
@@ -51,6 +56,8 @@ export default {
 }
 </script>
 <template>
+    <h1>S-keyp</h1>
+    <h2>Portfolio</h2>
     <canvas ref="canvas" id="canvas" :width="canvasWidth" :height="canvasHeight"></canvas>
 </template>
 
@@ -60,6 +67,8 @@ export default {
     top: 0;
     left: 0;
     background: #000;
-   
+    width: 100vw;
+    max-height: 90vh;
+    z-index: -1;
 }
 </style>
