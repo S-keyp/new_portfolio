@@ -45,7 +45,6 @@ export default {
         window.addEventListener('resize', this.resizeCanvas)    
         this.canvas.addEventListener('mousemove', (e: MouseEvent) => {
             this.flowField.setMousePosition(e.clientX, e.clientY)
-            console.log(e)
         })   
         
     },

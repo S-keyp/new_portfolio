@@ -44,8 +44,6 @@ export default {
 
         window.addEventListener('resize', this.resizeCanvas)
         
-        
-        
     },
 }
 </script>

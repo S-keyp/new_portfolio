@@ -15,7 +15,7 @@ export default abstract class AbstractCanvas {
 
     draw(...args): void {}
 
-    animate(): void {}
+    // animate(): void {}
 
     resizeCanvas(width: number, height: number): void {}
 

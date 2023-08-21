@@ -88,7 +88,6 @@ export default class FlowFieldEffect extends AbstractCanvas {
 
         for(let i= 0; i < this.grid.length; i++) {
             this.draw(i * this.cellWidth, this.height - 5, this.grid[i])
-            // console.log(this.height)
         }
         this.animationId = requestAnimationFrame(this.animate.bind(this))
     }
