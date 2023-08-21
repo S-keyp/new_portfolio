@@ -4,11 +4,13 @@ export default class FlowFieldEffect extends AbstractCanvas {
     i = 0
     incr = 1
     // angle = 0
+    radius = 0
+    radiusSpeed = .009
 
     lastTime = 0
     interval = 1000 / 60
     timer = 0
-    cellSize = 25
+    cellSize = 15
     gradient: CanvasGradient
 
     mouse = {
@@ -18,13 +20,12 @@ export default class FlowFieldEffect extends AbstractCanvas {
 
     constructor( canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, width: number, height: number ) {
         super(canvas, ctx, width, height)
-        this.ctx.lineWidth = 2
-        // this.ctx.strokeStyle = 'white'
+        this.ctx.lineWidth = 1
+
         this.createGradient()
         this.ctx.strokeStyle = this.gradient
 
-        console.log(`construct`)
-        // this.init()
+
         this.animate(this.lastTime)
 
     }
@@ -52,26 +53,37 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     drawLine(angle: number, x: number, y: number){
-        const length = 300
+        let positionX = x
+        let positionY = y
+        let dx = this.mouse.x - positionX
+        let dy = this.mouse.y - positionY
+        let distance = dx * dx + dy * dy
+        if(distance > 600000) distance = 600000
+        else if(distance < 20000) distance = 20000
+        
+        let length = distance * .0001
+
         this.ctx.beginPath()
         this.ctx.moveTo(x, y)
-        this.ctx.lineTo(x + 20 * Math.cos(angle), y + 20 * Math.sin(angle))
+        this.ctx.lineTo(x + length * Math.cos(angle), y + length * Math.sin(angle)) 
         this.ctx.stroke()
     }
     
     animate(timeStamp){  
         const deltaTime = timeStamp - this.lastTime
         this.lastTime = timeStamp
-
+        
+        
         if(this.timer > this.interval){
             this.ctx.clearRect(0, 0, this.width, this.height)
-
+            
+            this.radius += this.radiusSpeed
+            if(this.radius > 1.5 || this.radius < -1.5) this.radiusSpeed *= -1
+            
             for( let y = 0; y < this.height; y += this.cellSize){
                 for( let x = 0; x < this.width; x += this.cellSize){
-                    this.i += .00002
-                    const angle = Math.cos(x * .01 + this.i) + Math.sin(y * .01 + this.i) 
+                    const angle = (Math.cos(x * .01) + Math.sin(y * .01)) * this.radius
                     this.drawLine(angle, x, y)
-                
                 }
             }
 
