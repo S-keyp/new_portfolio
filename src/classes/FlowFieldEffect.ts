@@ -54,7 +54,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
         const length = 300
         this.ctx.beginPath()
         this.ctx.moveTo(x, y)
-        this.ctx.lineTo(x + 50 * angle, y + 50 * angle)
+        this.ctx.lineTo(x + 20 * Math.cos(angle), y + 20 * Math.sin(angle))
         this.ctx.stroke()
     }
     
@@ -68,15 +68,15 @@ export default class FlowFieldEffect extends AbstractCanvas {
             for( let y = 0; y < this.height; y += this.cellSize){
                 for( let x = 0; x < this.width; x += this.cellSize){
 
-                    const angle = Math.cos(x) + Math.sin(y)
+                    const angle = Math.cos(x * .5) + Math.sin(y * .5)
                     this.drawLine(angle, x, y)
                 
                 }
             }
 
 
-
             this.timer = 0
+
         } else this.timer += deltaTime
         
         this.animationId = requestAnimationFrame(this.animate.bind(this))
