@@ -37,6 +37,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
         this.gradient.addColorStop( .6, '#b3ffff' )
         this.gradient.addColorStop( .8, '#80ff80' )
         this.gradient.addColorStop( 1, '#FFFF33' )
+        return this.gradient
     }
 
     resizeCanvas(width: number, height: number): void{
@@ -50,7 +51,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
     setMousePosition(x: number, y: number){
         this.mouse.x = this.width / 2
         this.mouse.y = this.height / 2
-        // JUST HAVE TO UNCOMMENT BELOW TO TRACK MOUSE
+        // JUST HAVE TO UNCOMMENT BELOW TO TRACK
         // this.mouse.x = x
         // this.mouse.y = y
     }
@@ -85,6 +86,9 @@ export default class FlowFieldEffect extends AbstractCanvas {
             
             for( let y = 0; y < this.height; y += this.cellSize){
                 for( let x = 0; x < this.width; x += this.cellSize){
+                    if(x % (3 * this.cellSize) === 0) this.ctx.strokeStyle = 'blue'
+                    else this.ctx.strokeStyle = this.gradient
+                    
                     const angle = (Math.cos(x * .01) + Math.sin(y * .01)) * this.radius
                     this.drawLine(angle, x, y)
                 }

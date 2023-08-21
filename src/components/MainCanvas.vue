@@ -62,13 +62,18 @@ export default {
 </template>
 
 <style scoped>
+h1, h2{
+    transform: translateY(-120%);
+    margin: 0;
+}
+
 #canvas {
     position: absolute;
     top: 0;
     left: 0;
     background: #000;
     width: 100vw;
-    max-height: 90vh;
+    max-height: 80vh;
     z-index: -1;
 }
 </style>
