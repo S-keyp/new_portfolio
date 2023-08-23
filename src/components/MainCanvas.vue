@@ -1,12 +1,11 @@
 <script lang="ts">
-import FlowFieldEffect from './../classes/FlowFieldEffect.ts'
+import FlowFieldEffect from './../classes/FlowFieldEffect_save_V1.ts'
 
 export default {
     data(){
         return{
             flowField: null as FlowFieldEffect || null,
             canvas: null as HTMLCanvasElement || null,
-            ctx: null as CanvasRenderingContext2D || null,
         }
     },
 
@@ -15,10 +14,7 @@ export default {
     methods: {
         resizeCanvas(){
             cancelAnimationFrame(this.flowField.animationId)
-            this.canvas.width = window.innerWidth
-            this.canvas.height = window.innerHeight
-            this.flowField = new FlowFieldEffect(this.canvas, this.ctx,  this.canvas.width,  this.canvas.height) as FlowFieldEffect
-            // this.flowField.resizeCanvas(window.innerWidth, window.innerHeight)   
+            this.flowField = new FlowFieldEffect() as FlowFieldEffect
         },
     },
 
@@ -26,7 +22,6 @@ export default {
 
     computed:{
         canvasWidth(){
-            console.log(window.innerWidth)
             return window.innerWidth
         },
         canvasHeight(){
@@ -37,24 +32,16 @@ export default {
 
     
     mounted() {
-
-        this.canvas = this.$refs.canvas as HTMLCanvasElement
-        this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D
-        const CANVAS_WIDTH = window.innerWidth // 700
-        const CANVAS_HEIGHT = window.innerHeight // 500
-        
-        
-        this.flowField = new FlowFieldEffect(this.canvas, this.ctx, CANVAS_WIDTH, CANVAS_HEIGHT) as FlowFieldEffect
-        
-        
-        window.addEventListener('resize', this.resizeCanvas)    
-        this.canvas.addEventListener('mousemove', (e: MouseEvent) => {
+        this.flowField = new FlowFieldEffect() as FlowFieldEffect
+        window.addEventListener('resize', this.resizeCanvas)
+        // Move mouse event listener in abstractCanvas?    
+        this.flowField.canvas.addEventListener('mousemove', (e: MouseEvent) => {
             this.flowField.setMousePosition(e.clientX, e.clientY)
         })   
-        
     },
 }
 </script>
+
 <template>
     <h1>S-keyp</h1>
     <h2>Portfolio</h2>
@@ -71,9 +58,9 @@ h1, h2{
     position: absolute;
     top: 0;
     left: 0;
-    background: #000;
+    background: #333;
     width: 100vw;
     max-height: 80vh;
-    z-index: -1;
+    /* z-index: -1; */
 }
 </style>

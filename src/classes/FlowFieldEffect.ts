@@ -18,9 +18,12 @@ export default class FlowFieldEffect extends AbstractCanvas {
         y: this.height / 2
     }
 
-    constructor( canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, width: number, height: number ) {
-        super(canvas, ctx, width, height)
+    constructor( ) {
+        const canvas = document.getElementById('canvas') as HTMLCanvasElement
+
+        super(canvas)
         this.ctx.lineWidth = 1
+
 
         this.createGradient()
         this.ctx.strokeStyle = this.gradient
@@ -49,11 +52,11 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     setMousePosition(x: number, y: number){
-        this.mouse.x = this.width / 2
-        this.mouse.y = this.height / 2
+        // this.mouse.x = this.width / 2
+        // this.mouse.y = this.height / 2
         // JUST HAVE TO UNCOMMENT BELOW TO TRACK
-        // this.mouse.x = x
-        // this.mouse.y = y
+        this.mouse.x = x
+        this.mouse.y = y
     }
 
     drawLine(angle: number, x: number, y: number){
@@ -93,7 +96,6 @@ export default class FlowFieldEffect extends AbstractCanvas {
                     this.drawLine(angle, x, y)
                 }
             }
-
 
             this.timer = 0
 

@@ -5,11 +5,12 @@ export default abstract class AbstractCanvas {
     width: number
     animationId: number
 
-    constructor( canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, width: number, height: number ) {
+    constructor( canvas: HTMLCanvasElement ) {
         this.canvas = canvas
-        this.ctx = ctx
-        this.width = width
-        this.height = height
+        this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+    
+        this.width = canvas.width
+        this.height = canvas.height
     }
 
 

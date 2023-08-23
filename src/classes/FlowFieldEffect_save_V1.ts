@@ -10,8 +10,9 @@ export default class FlowFieldEffect extends AbstractCanvas {
         y: this.height / 2
     }
 
-    constructor( canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, width: number, height: number ) {
-        super(canvas, ctx, width, height)
+    constructor() {
+        const canvas = document.getElementById('canvas') as HTMLCanvasElement
+        super(canvas)
         this.ctx.lineWidth = 2
 
         this.createGradient()
