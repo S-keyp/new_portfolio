@@ -8,6 +8,9 @@ export default abstract class AbstractCanvas {
     constructor( canvas: HTMLCanvasElement ) {
         this.canvas = canvas
         this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+
+        // TODO: get computed layout of canvas to resize according to css
+        // ex if height = 90% => apply 10% correction on mouse cursor 
     
         this.width = canvas.width
         this.height = canvas.height
