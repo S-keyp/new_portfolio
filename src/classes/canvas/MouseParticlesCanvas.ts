@@ -20,7 +20,6 @@ export default class MouseParticleEffect extends AbstractCanvas {
 
     constructor( ) {
         const canvas = document.getElementById('mouseParticleCanvas') as HTMLCanvasElement
-console.log(canvas)
         super(canvas)
 
         for(let i = 0; i <5; i++){
@@ -60,17 +59,16 @@ console.log(canvas)
     }
 
     drawCircle( x: number, y: number, size: number){
-        // let positionX = x
-        // let positionY = y
-        // let dx = this.mouse.x - positionX
-        // let dy = this.mouse.y - positionY
-        // let distance = Math.sqrt(dx * dx + dy * dy)
-        // if(distance < 100) 
         
-        this.ctx.beginPath()
-        this.ctx.arc(x, y, size, 0, 2 * Math.PI)
-        this.ctx.fill()
-        this.ctx.stroke()
+        // let dx = this.mouse.x - x
+        // let dy = this.mouse.y - y
+        // let distance = Math.sqrt(dx * dx + dy * dy)
+        // if(distance < 100) {
+            this.ctx.beginPath()
+            this.ctx.arc(x, y, size, 0, 2 * Math.PI)
+            this.ctx.fill()
+            this.ctx.stroke()
+        // }
     }
     
     animate(timeStamp){  
