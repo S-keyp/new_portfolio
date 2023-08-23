@@ -1,7 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
-import MainCanvas from './components/MainCanvas.vue'
-// import SorterCanvas from './components/SorterCanvas.vue'
+// import MainCanvas from './components/MainCanvas.vue'
+import SorterCanvas from './components/SorterCanvas.vue'
 </script>
 
 <template>
@@ -15,8 +15,8 @@ import MainCanvas from './components/MainCanvas.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" /> -->
-  <MainCanvas />
-  <!-- <SorterCanvas /> -->
+  <!-- <MainCanvas /> -->
+  <SorterCanvas />
 </template>
 
 <style scoped>

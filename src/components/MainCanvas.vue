@@ -1,5 +1,5 @@
 <script lang="ts">
-import FlowFieldEffect from './../classes/FlowFieldEffect_save_V1.ts'
+import FlowFieldEffect from './../classes/canvas/FlowFieldEffect.ts'
 
 export default {
     data(){
@@ -45,7 +45,7 @@ export default {
 <template>
     <h1>S-keyp</h1>
     <h2>Portfolio</h2>
-    <canvas ref="canvas" id="canvas" :width="canvasWidth" :height="canvasHeight"></canvas>
+    <canvas ref="canvas" id="flowFieldEffect" :width="canvasWidth" :height="canvasHeight"></canvas>
 </template>
 
 <style scoped>
@@ -54,7 +54,7 @@ h1, h2{
     margin: 0;
 }
 
-#canvas {
+#flowFieldEffect {
     position: absolute;
     top: 0;
     left: 0;
@@ -63,4 +63,4 @@ h1, h2{
     max-height: 80vh;
     /* z-index: -1; */
 }
-</style>
+</style>../classes/canvas/FlowFieldEffect_save_V1.ts

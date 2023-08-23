@@ -11,7 +11,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     constructor() {
-        const canvas = document.getElementById('canvas') as HTMLCanvasElement
+        const canvas = document.getElementById('flowFieldEffect') as HTMLCanvasElement
         super(canvas)
         this.ctx.lineWidth = 2
 

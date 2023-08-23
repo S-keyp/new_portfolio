@@ -1,13 +1,14 @@
 import AbstractCanvas from "./AbstractCanvas"
 
-export default class FlowFieldEffect extends AbstractCanvas {
+export default class SorterCanvas extends AbstractCanvas {
     i: number
     incr = 1
     grid = []
     cellWidth : number
 
-    constructor( canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, width: number, height: number ) {
-        super(canvas, ctx, width, height)
+    constructor() {
+        const canvas = document.getElementById('sorterCanvas') as HTMLCanvasElement
+        super(canvas)
         
         this.ctx.fillStyle = 'white'
 
