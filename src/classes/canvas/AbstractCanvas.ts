@@ -6,6 +6,7 @@ export default abstract class AbstractCanvas {
     animationId: number
 
     constructor( canvas: HTMLCanvasElement ) {
+        console.log(`hello world`)
         this.canvas = canvas
         this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 

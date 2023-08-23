@@ -4,14 +4,13 @@ import Particle from "../objects/Particle"
 export default class MouseParticleEffect extends AbstractCanvas {
     i = 0
     incr = 1
-    // angle = 0
-    radius = 0
-    radiusSpeed = .009
+    particlesArray = []
+    
 
     lastTime = 0
     interval = 1000 / 60
     timer = 0
-    cellSize = 15
+    cellSize = 50
     gradient: CanvasGradient
 
     mouse = {
@@ -21,28 +20,23 @@ export default class MouseParticleEffect extends AbstractCanvas {
 
     constructor( ) {
         const canvas = document.getElementById('mouseParticleCanvas') as HTMLCanvasElement
-
+console.log(canvas)
         super(canvas)
-        this.ctx.lineWidth = 1
-        let arr = [new Particle(), new Particle(), new Particle(), new Particle()]
-        console.log(arr)
-        this.createGradient()
-        this.ctx.strokeStyle = this.gradient
 
+        for(let i = 0; i <5; i++){
+            this.particlesArray.push(new Particle(250, 250))
+        }
+        console.log(`${this.particlesArray}`)
 
         this.animate(this.lastTime)
 
     }
 
-    createGradient(){
-        this.gradient = this.ctx.createLinearGradient(0, 0, this.width, this.height)
-        this.gradient.addColorStop( .2, '#FF5C33' )
-        this.gradient.addColorStop( .4, '#ccccff' )
-        this.gradient.addColorStop( .6, '#b3ffff' )
-        this.gradient.addColorStop( .8, '#80ff80' )
-        this.gradient.addColorStop( 1, '#FFFF33' )
-        return this.gradient
-    }
+    // addSprites(x: number, y: number){
+    //     for(let i = 0; i <5; i++){
+    //         this.particlesArray.push(new Particle(250, 250))
+    //     }
+    // }
 
     resizeCanvas(width: number, height: number): void{
         // ajouter 2ème condition pour s'assurer que ça reste un rectangle
@@ -58,22 +52,24 @@ export default class MouseParticleEffect extends AbstractCanvas {
         // JUST HAVE TO UNCOMMENT BELOW TO TRACK
         this.mouse.x = x
         this.mouse.y = y
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        this.ctx.fillStyle = '#' + randomColor
+        for(let i = 0; i < Math.floor(Math.random() * 300); i++){
+            this.particlesArray.push(new Particle(x, y))
+        }
     }
 
-    drawLine(angle: number, x: number, y: number){
-        let positionX = x
-        let positionY = y
-        let dx = this.mouse.x - positionX
-        let dy = this.mouse.y - positionY
-        let distance = dx * dx + dy * dy
-        if(distance > 600000) distance = 600000
-        else if(distance < 20000) distance = 20000
+    drawCircle( x: number, y: number, size: number){
+        // let positionX = x
+        // let positionY = y
+        // let dx = this.mouse.x - positionX
+        // let dy = this.mouse.y - positionY
+        // let distance = Math.sqrt(dx * dx + dy * dy)
+        // if(distance < 100) 
         
-        let length = distance * .0001
-
         this.ctx.beginPath()
-        this.ctx.moveTo(x, y)
-        this.ctx.lineTo(x + length * Math.cos(angle), y + length * Math.sin(angle)) 
+        this.ctx.arc(x, y, size, 0, 2 * Math.PI)
+        this.ctx.fill()
         this.ctx.stroke()
     }
     
@@ -83,19 +79,14 @@ export default class MouseParticleEffect extends AbstractCanvas {
         
         
         if(this.timer > this.interval){
-            this.ctx.clearRect(0, 0, this.width, this.height)
+            // this.ctx.clearRect(0, 0, this.width, this.height)
             
-            this.radius += this.radiusSpeed
-            if(this.radius > 1.5 || this.radius < -1.5) this.radiusSpeed *= -1
             
-            for( let y = 0; y < this.height; y += this.cellSize){
-                for( let x = 0; x < this.width; x += this.cellSize){
-                    if(x % (3 * this.cellSize) === 0) this.ctx.strokeStyle = 'blue'
-                    else this.ctx.strokeStyle = this.gradient
-                    
-                    const angle = (Math.cos(x * .01) + Math.sin(y * .01)) * this.radius
-                    this.drawLine(angle, x, y)
-                }
+            for( let i = 0; i < this.particlesArray.length; i++){
+                this.particlesArray[i].animate()
+                this.drawCircle(this.particlesArray[i].x, this.particlesArray[i].y, this.particlesArray[i].size)
+
+                if(this.particlesArray[i].size < 1) this.particlesArray.splice(i, 1)
             }
 
             this.timer = 0

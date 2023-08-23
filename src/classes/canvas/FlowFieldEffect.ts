@@ -28,7 +28,7 @@ export default class FlowFieldEffect extends AbstractCanvas {
         this.createGradient()
         this.ctx.strokeStyle = this.gradient
 
-
+console.log(`henlo`)
         this.animate(this.lastTime)
 
     }

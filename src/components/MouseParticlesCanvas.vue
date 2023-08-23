@@ -35,16 +35,19 @@ export default {
         this.mouseParticleCanvas = new MouseParticleCanvas()
 
         window.addEventListener('resize', this.resizeCanvas)
+        this.mouseParticleCanvas.canvas.addEventListener('click', (e: MouseEvent) => {
+            this.mouseParticleCanvas.setMousePosition(e.clientX, e.clientY)
+        })
         
     },
 }
 </script>
 <template>
-    <canvas ref="canvas1" id="mouseParticleCanvas" :width="canvasWidth" :height="canvasHeight"></canvas>
+    <canvas id="mouseParticleCanvas" :width="canvasWidth" :height="canvasHeight"></canvas>
 </template>
 
 <style scoped>
-#sorterCanvas {
+#mouseParticleCanvas {
     position: absolute;
     top: 0;
     left: 0;
