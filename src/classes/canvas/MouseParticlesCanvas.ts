@@ -1,7 +1,8 @@
 import AbstractCanvas from "./AbstractCanvas"
 import Particle from "../objects/Particle"
+import FastParticle from "../objects/FastParticle"
 
-export default class MouseParticleEffect extends AbstractCanvas {
+export default class MouseParticleCanvas extends AbstractCanvas {
     i = 0
     incr = 1
     particlesArray: Particle[] = []
@@ -11,6 +12,8 @@ export default class MouseParticleEffect extends AbstractCanvas {
     interval = 1000 / 60
     timer = 0
     cellSize = 50
+
+    hue = 0
 
     mouse = {
         x: this.canvas.width / 2,
@@ -24,11 +27,19 @@ export default class MouseParticleEffect extends AbstractCanvas {
 
     }
 
-    // addSprites(x: number, y: number){
-    //     for(let i = 0; i <5; i++){
-    //         this.particlesArray.push(new Particle(250, 250))
-    //     }
-    // }
+    addSprite(x: number, y: number){
+        this.hue += 1
+        for(let i = 0; i < 5; i++){
+            this.particlesArray.push(new Particle(x, y, this.hue))
+        }
+    }
+
+    addFastSprite(x: number, y: number){
+        this.hue += 1
+        for(let i = 0; i < 15; i++){
+            this.particlesArray.push(new FastParticle(x, y, this.hue))
+        }
+    }
 
     
 
@@ -38,25 +49,21 @@ export default class MouseParticleEffect extends AbstractCanvas {
         // JUST HAVE TO UNCOMMENT BELOW TO TRACK
         this.mouse.x = x
         this.mouse.y = y
-        const randomColor = Math.floor(Math.random()*16777215).toString(16);
-        this.ctx.fillStyle = '#' + randomColor
-        for(let i = 0; i < Math.floor(Math.random() * 300); i++){
-            this.particlesArray.push(new Particle(x, y))
-        }
+        
+        this.addSprite(x, y)
     }
 
-    drawCircle( x: number, y: number, size: number){
+    clickMousePosition(x: number, y: number){
+        // this.mouse.x = this.canvas.width / 2
+        // this.mouse.y = this.canvas.height / 2
+        // JUST HAVE TO UNCOMMENT BELOW TO TRACK
+        this.mouse.x = x
+        this.mouse.y = y
         
-        // let dx = this.mouse.x - x
-        // let dy = this.mouse.y - y
-        // let distance = Math.sqrt(dx * dx + dy * dy)
-        // if(distance < 100) {
-            this.ctx.beginPath()
-            this.ctx.arc(x, y, size, 0, 2 * Math.PI)
-            this.ctx.fill()
-            this.ctx.stroke()
-        // }
+        this.addFastSprite(x, y)
     }
+
+    
     
     animate(timeStamp: DOMHighResTimeStamp){  
         const deltaTime = timeStamp - this.lastTime
@@ -64,13 +71,26 @@ export default class MouseParticleEffect extends AbstractCanvas {
         
         
         if(this.timer > this.interval){
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            
+            // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+            this.ctx.fillStyle = 'rgba(0,0,0,0.5)'
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
             
             for( let i = this.particlesArray.length - 1; i >= 0 ; i--){
-                this.particlesArray[i].animate()
-                this.drawCircle(this.particlesArray[i].x, this.particlesArray[i].y, this.particlesArray[i].size)
+                this.particlesArray[i].update()
+                this.particlesArray[i].draw(this.ctx)
 
+                for(let j = i; j <this.particlesArray.length; j++){
+                    const dx = this.particlesArray[i].x - this.particlesArray[j].x
+                    const dy = this.particlesArray[i].y - this.particlesArray[j].y
+                    const dist = Math.sqrt(dx * dx + dy * dy)
+                    if(dist < 50){
+                        this.ctx.beginPath()
+                        this.ctx.moveTo(this.particlesArray[i].x, this.particlesArray[i].y)
+                        this.ctx.lineTo(this.particlesArray[j].x, this.particlesArray[j].y)
+                        this.ctx.stroke()
+                    }
+                }
+                
                 if(this.particlesArray[i].size < 1) this.particlesArray.splice(i, 1)
             }
 

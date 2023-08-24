@@ -4,7 +4,7 @@ import MouseParticleCanvas from './../classes/canvas/MouseParticlesCanvas.ts'
 export default {
     data(){
         return{
-            mouseParticleCanvas: null as MouseParticleCanvas || null,
+            mouseParticleCanvas: null as MouseParticleCanvas | null,
         }
     },
 
@@ -12,8 +12,7 @@ export default {
 
     methods: {
         resizeCanvas(){
-            this.mouseParticleCanvas.resizeCanvas(window.innerWidth, window.innerHeight)
-            // this.mouseParticleCanvas.animate(1000/60)
+            this.mouseParticleCanvas?.resizeCanvas(window.innerWidth, window.innerHeight)
         },
     },
 
@@ -35,8 +34,11 @@ export default {
         this.mouseParticleCanvas = new MouseParticleCanvas()
 
         window.addEventListener('resize', this.resizeCanvas)
+        this.mouseParticleCanvas.canvas.addEventListener('mousemove', (e: MouseEvent) => {
+            this.mouseParticleCanvas?.setMousePosition(e.clientX, e.clientY)
+        })
         this.mouseParticleCanvas.canvas.addEventListener('click', (e: MouseEvent) => {
-            this.mouseParticleCanvas.setMousePosition(e.clientX, e.clientY)
+            this.mouseParticleCanvas?.clickMousePosition(e.clientX, e.clientY)
         })
         
     },

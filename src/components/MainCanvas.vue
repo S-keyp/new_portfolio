@@ -4,7 +4,7 @@ import FlowFieldEffect from './../classes/canvas/FlowFieldEffect.ts'
 export default {
     data(){
         return{
-            flowField: null as FlowFieldEffect || null,
+            flowField: null as FlowFieldEffect | null,
         }
     },
 
@@ -12,7 +12,7 @@ export default {
 
     methods: {
         resizeCanvas(){
-            this.flowField.resizeCanvas(window.innerWidth, window.innerHeight)
+            this.flowField?.resizeCanvas(window.innerWidth, window.innerHeight)
         },
     },
 
@@ -36,7 +36,7 @@ export default {
         
         // Move mouse event listener in abstractCanvas?    
         this.flowField.canvas.addEventListener('mousemove', (e: MouseEvent) => {
-            this.flowField.setMousePosition(e.clientX, e.clientY)
+            this.flowField?.setMousePosition(e.clientX, e.clientY)
         })   
     },
 }

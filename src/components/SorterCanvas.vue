@@ -4,7 +4,7 @@ import SorterCanvas from './../classes/canvas/SorterCanvas.ts'
 export default {
     data(){
         return{
-            sorterCanvas: null as SorterCanvas || null,
+            sorterCanvas: null as SorterCanvas | null,
         }
     },
 
@@ -12,7 +12,7 @@ export default {
 
     methods: {
         resizeCanvas(){
-            this.sorterCanvas.resizeCanvas(window.innerWidth, window.innerHeight)
+            this.sorterCanvas?.resizeCanvas(window.innerWidth, window.innerHeight)
         },
     },
 
