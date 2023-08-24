@@ -1,27 +1,27 @@
 export default abstract class AbstractCanvas {
-    canvas: HTMLCanvasElement
+    canvas: HTMLCanvasElement 
     ctx: CanvasRenderingContext2D
-    height: number
-    width: number
-    animationId: number
+    
+    animationId = 0
 
-    constructor( canvas: HTMLCanvasElement ) {
-        console.log(`hello world`)
-        this.canvas = canvas
-        this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D
+    constructor( idCanvas: string ) {
+        this.canvas = document.getElementById(idCanvas) as HTMLCanvasElement
+        this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D
 
         // TODO: get computed layout of canvas to resize according to css
         // ex if height = 90% => apply 10% correction on mouse cursor 
     
-        this.width = canvas.width
-        this.height = canvas.height
+        
     }
 
 
-    draw(...args): void {}
+    draw(...args: number[]): void {}
 
     // animate(): void {}
 
-    resizeCanvas(width: number, height: number): void {}
+    resizeCanvas(width: number, height: number): void {
+        this.canvas.width = width
+        this.canvas.height = height
+    }
 
 }

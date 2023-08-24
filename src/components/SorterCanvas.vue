@@ -12,8 +12,7 @@ export default {
 
     methods: {
         resizeCanvas(){
-            cancelAnimationFrame(this.sorterCanvas.animationId)
-            this.sorterCanvas = new SorterCanvas() as SorterCanvas
+            this.sorterCanvas.resizeCanvas(window.innerWidth, window.innerHeight)
         },
     },
 
@@ -33,7 +32,7 @@ export default {
     
     mounted() {
        
-        this.sorterCanvas = new SorterCanvas()
+        this.sorterCanvas = new SorterCanvas() as SorterCanvas
 
         window.addEventListener('resize', this.resizeCanvas)
         

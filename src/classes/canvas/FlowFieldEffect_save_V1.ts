@@ -6,16 +6,15 @@ export default class FlowFieldEffect extends AbstractCanvas {
     gradient: CanvasGradient
 
     mouse = {
-        x: this.width / 2,
-        y: this.height / 2
+        x: this.canvas.width / 2,
+        y: this.canvas.height / 2
     }
 
     constructor() {
-        const canvas = document.getElementById('flowFieldEffect') as HTMLCanvasElement
-        super(canvas)
+        super('flowFieldEffect')
         this.ctx.lineWidth = 2
 
-        this.createGradient()
+        this.gradient = this.createGradient()
         this.ctx.strokeStyle = this.gradient
 
         this.animate()
@@ -23,21 +22,16 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     createGradient(){
-        this.gradient = this.ctx.createLinearGradient(0, 0, this.width, this.height)
+        this.gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height)
         this.gradient.addColorStop( .2, '#FF5C33' )
         this.gradient.addColorStop( .4, '#ccccff' )
         this.gradient.addColorStop( .6, '#b3ffff' )
         this.gradient.addColorStop( .8, '#80ff80' )
         this.gradient.addColorStop( 1, '#FFFF33' )
+        return this.gradient
     }
 
-    resizeCanvas(width: number, height: number): void{
-        // ajouter 2ème condition pour s'assurer que ça reste un rectangle
-        if(width > 1.25 * height ){
-            this.width = width
-            this.height = height
-        }
-    }
+    
 
     setMousePosition(x: number, y: number){
         this.mouse.x = x
@@ -45,7 +39,6 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
 
     draw(x: number, y: number){
-        const length = 300
         this.ctx.beginPath()
         this.ctx.moveTo(x, y)
         this.ctx.lineTo(this.mouse.x, this.mouse.y)
@@ -53,8 +46,8 @@ export default class FlowFieldEffect extends AbstractCanvas {
     }
     
     animate(){  
-        // this.ctx.clearRect(0, 0, this.width, this.height)
-        this.draw(this.width / 2, this.height / 2)
+        // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.draw(this.canvas.width / 2, this.canvas.height / 2)
 
         this.animationId = requestAnimationFrame(this.animate.bind(this))
     }

@@ -14,27 +14,24 @@ export default class FlowFieldEffect extends AbstractCanvas {
     gradient: CanvasGradient
 
     mouse = {
-        x: this.width / 2,
-        y: this.height / 2
+        x: this.canvas.width / 2,
+        y: this.canvas.height / 2
     }
 
-    constructor( ) {
-        const canvas = document.getElementById('flowFieldEffect') as HTMLCanvasElement
-
-        super(canvas)
+    constructor() {
+        super('flowFieldEffect')
         this.ctx.lineWidth = 1
 
 
-        this.createGradient()
+        this.gradient = this.createGradient()
         this.ctx.strokeStyle = this.gradient
 
-console.log(`henlo`)
         this.animate(this.lastTime)
 
     }
 
     createGradient(){
-        this.gradient = this.ctx.createLinearGradient(0, 0, this.width, this.height)
+        this.gradient = this.ctx.createLinearGradient(0, 0, this.canvas.width, this.canvas.height)
         this.gradient.addColorStop( .2, '#FF5C33' )
         this.gradient.addColorStop( .4, '#ccccff' )
         this.gradient.addColorStop( .6, '#b3ffff' )
@@ -43,17 +40,11 @@ console.log(`henlo`)
         return this.gradient
     }
 
-    resizeCanvas(width: number, height: number): void{
-        // ajouter 2ème condition pour s'assurer que ça reste un rectangle
-        if(width > 1.25 * height ){
-            this.width = width
-            this.height = height
-        }
-    }
+ 
 
     setMousePosition(x: number, y: number){
-        // this.mouse.x = this.width / 2
-        // this.mouse.y = this.height / 2
+        // this.mouse.x = this.canvas.width / 2
+        // this.mouse.y = this.canvas.height / 2
         // JUST HAVE TO UNCOMMENT BELOW TO TRACK
         this.mouse.x = x
         this.mouse.y = y
@@ -76,19 +67,19 @@ console.log(`henlo`)
         this.ctx.stroke()
     }
     
-    animate(timeStamp){  
+    animate(timeStamp: DOMHighResTimeStamp){  
         const deltaTime = timeStamp - this.lastTime
         this.lastTime = timeStamp
         
         
         if(this.timer > this.interval){
-            this.ctx.clearRect(0, 0, this.width, this.height)
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
             
             this.radius += this.radiusSpeed
             if(this.radius > 1.5 || this.radius < -1.5) this.radiusSpeed *= -1
             
-            for( let y = 0; y < this.height; y += this.cellSize){
-                for( let x = 0; x < this.width; x += this.cellSize){
+            for( let y = 0; y < this.canvas.height; y += this.cellSize){
+                for( let x = 0; x < this.canvas.width; x += this.cellSize){
                     if(x % (3 * this.cellSize) === 0) this.ctx.strokeStyle = 'blue'
                     else this.ctx.strokeStyle = this.gradient
                     

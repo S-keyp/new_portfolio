@@ -1,15 +1,12 @@
 import AbstractCanvas from "./AbstractCanvas"
 
 export default class SorterCanvas extends AbstractCanvas {
-    i: number
     incr = 1
-    grid = []
-    cellWidth : number
+    grid : number[] = []
+    cellWidth : number = 0
 
     constructor() {
-        const canvas = document.getElementById('sorterCanvas') as HTMLCanvasElement
-        super(canvas)
-        
+        super('sorterCanvas')
         this.ctx.fillStyle = 'white'
 
         this.init()
@@ -17,9 +14,9 @@ export default class SorterCanvas extends AbstractCanvas {
 
 
         // TEST SORTING
-        // setTimeout( ()=> {
-        //     this.bulleSorting()
-        // }, 2500)
+        setTimeout( ()=> {
+            this.bulleSorting()
+        }, 2500)
 
         // setInterval( ()=> {
         //     this.insertionSorting()
@@ -29,9 +26,15 @@ export default class SorterCanvas extends AbstractCanvas {
 
     init(){
         for(let i = 0; i < 50; i++){
-            this.grid.push((Math.random()).toFixed(3))
+            this.grid.push(parseFloat((Math.random().toFixed(3))))
         }
-        this.cellWidth = this.width / this.grid.length
+        this.cellWidth = this.canvas.width / this.grid.length
+    }
+    
+    resizeCanvas(width: number, height: number): void {
+        this.canvas.width = width
+        this.canvas.height = height
+        this.cellWidth = this.canvas.width / this.grid.length
     }
 
     compare(a: number, b: number){
@@ -75,31 +78,22 @@ export default class SorterCanvas extends AbstractCanvas {
         const saturation = 100 // - cellValue * 100; // Reverse the value for better contrast
         const lightness = 50 // cellValue * 100; // Adjust as needed
 
-        const my_gradient = this.ctx.createLinearGradient(x, y, x, cellValue * this.height);
-        my_gradient.addColorStop(0, `hsl( ${colorValue}deg ${saturation}% ${lightness}% )`);
-        my_gradient.addColorStop(1, `hsl( ${colorValue}deg ${saturation}% ${.5 * lightness}% )`);
+        const my_gradient = this.ctx.createLinearGradient(x, y, x, y - cellValue * this.canvas.height);
+        my_gradient.addColorStop(1, `hsl( ${colorValue}deg ${saturation}% ${lightness}% )`);
+        my_gradient.addColorStop(0, `hsl( ${colorValue}deg ${saturation}% ${.5 * lightness}% )`);
         this.ctx.fillStyle = my_gradient;
 
-        this.ctx.fillRect(x, y, this.cellWidth, -cellValue * this.height)
+        this.ctx.fillRect(x, y, this.cellWidth, -cellValue * this.canvas.height)
 
     }
 
     animate(): void{  
-        this.ctx.clearRect(0, 0, this.width, this.height)
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
         for(let i= 0; i < this.grid.length; i++) {
-            this.draw(i * this.cellWidth, this.height - 5, this.grid[i])
+            this.draw(i * this.cellWidth, this.canvas.height - 5, this.grid[i])
         }
         this.animationId = requestAnimationFrame(this.animate.bind(this))
     }
-
-    resizeCanvas(width: number, height: number): void{
-        // ajouter 2ème condition pour s'assurer que ça reste un rectangle
-        if(width > 1.25 * height ){
-            this.width = width
-            this.height = height
-        }
-    }
-
 
 }

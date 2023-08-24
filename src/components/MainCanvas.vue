@@ -5,7 +5,6 @@ export default {
     data(){
         return{
             flowField: null as FlowFieldEffect || null,
-            canvas: null as HTMLCanvasElement || null,
         }
     },
 
@@ -13,8 +12,7 @@ export default {
 
     methods: {
         resizeCanvas(){
-            cancelAnimationFrame(this.flowField.animationId)
-            this.flowField = new FlowFieldEffect() as FlowFieldEffect
+            this.flowField.resizeCanvas(window.innerWidth, window.innerHeight)
         },
     },
 
@@ -34,6 +32,8 @@ export default {
     mounted() {
         this.flowField = new FlowFieldEffect() as FlowFieldEffect
         window.addEventListener('resize', this.resizeCanvas)
+        
+        
         // Move mouse event listener in abstractCanvas?    
         this.flowField.canvas.addEventListener('mousemove', (e: MouseEvent) => {
             this.flowField.setMousePosition(e.clientX, e.clientY)
@@ -59,8 +59,8 @@ h1, h2{
     top: 0;
     left: 0;
     background: #333;
-    width: 100vw;
-    max-height: 80vh;
+    /* width: 100vw; */
+    /* max-height: 80vh; */
     /* z-index: -1; */
 }
-</style>../classes/canvas/FlowFieldEffect_save_V1.ts
+</style>

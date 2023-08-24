@@ -1,5 +1,4 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
 import MainCanvas from './components/MainCanvas.vue'
 import SorterCanvas from './components/SorterCanvas.vue'
 import MouseParticlesCanvas from './components/MouseParticlesCanvas.vue'

@@ -12,8 +12,8 @@ export default {
 
     methods: {
         resizeCanvas(){
-            cancelAnimationFrame(this.mouseParticleCanvas.animationId)
-            this.mouseParticleCanvas = new MouseParticleCanvas() as MouseParticleCanvas
+            this.mouseParticleCanvas.resizeCanvas(window.innerWidth, window.innerHeight)
+            // this.mouseParticleCanvas.animate(1000/60)
         },
     },
 

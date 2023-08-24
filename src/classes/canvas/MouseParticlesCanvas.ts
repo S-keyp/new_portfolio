@@ -4,28 +4,21 @@ import Particle from "../objects/Particle"
 export default class MouseParticleEffect extends AbstractCanvas {
     i = 0
     incr = 1
-    particlesArray = []
+    particlesArray: Particle[] = []
     
 
     lastTime = 0
     interval = 1000 / 60
     timer = 0
     cellSize = 50
-    gradient: CanvasGradient
 
     mouse = {
-        x: this.width / 2,
-        y: this.height / 2
+        x: this.canvas.width / 2,
+        y: this.canvas.height / 2
     }
 
-    constructor( ) {
-        const canvas = document.getElementById('mouseParticleCanvas') as HTMLCanvasElement
-        super(canvas)
-
-        for(let i = 0; i <5; i++){
-            this.particlesArray.push(new Particle(250, 250))
-        }
-        console.log(`${this.particlesArray}`)
+    constructor() {
+        super('mouseParticleCanvas')
 
         this.animate(this.lastTime)
 
@@ -37,17 +30,11 @@ export default class MouseParticleEffect extends AbstractCanvas {
     //     }
     // }
 
-    resizeCanvas(width: number, height: number): void{
-        // ajouter 2ème condition pour s'assurer que ça reste un rectangle
-        if(width > 1.25 * height ){
-            this.width = width
-            this.height = height
-        }
-    }
+    
 
     setMousePosition(x: number, y: number){
-        // this.mouse.x = this.width / 2
-        // this.mouse.y = this.height / 2
+        // this.mouse.x = this.canvas.width / 2
+        // this.mouse.y = this.canvas.height / 2
         // JUST HAVE TO UNCOMMENT BELOW TO TRACK
         this.mouse.x = x
         this.mouse.y = y
@@ -71,16 +58,16 @@ export default class MouseParticleEffect extends AbstractCanvas {
         // }
     }
     
-    animate(timeStamp){  
+    animate(timeStamp: DOMHighResTimeStamp){  
         const deltaTime = timeStamp - this.lastTime
         this.lastTime = timeStamp
         
         
         if(this.timer > this.interval){
-            // this.ctx.clearRect(0, 0, this.width, this.height)
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
             
             
-            for( let i = 0; i < this.particlesArray.length; i++){
+            for( let i = this.particlesArray.length - 1; i >= 0 ; i--){
                 this.particlesArray[i].animate()
                 this.drawCircle(this.particlesArray[i].x, this.particlesArray[i].y, this.particlesArray[i].size)
 
