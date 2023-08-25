@@ -3,17 +3,15 @@ import Particle from "../objects/Particle"
 import FastParticle from "../objects/FastParticle"
 
 export default class MouseParticleCanvas extends AbstractCanvas {
-    i = 0
-    incr = 1
     particlesArray: Particle[] = []
     
+    mouseEventFire = true
+    hue = 0
 
     lastTime = 0
     interval = 1000 / 60
     timer = 0
-    cellSize = 50
 
-    hue = 0
 
     mouse = {
         x: this.canvas.width / 2,
@@ -29,14 +27,15 @@ export default class MouseParticleCanvas extends AbstractCanvas {
 
     addSprite(x: number, y: number){
         this.hue += 1
-        for(let i = 0; i < 5; i++){
+        for(let i = 0; i < 6; i++){
             this.particlesArray.push(new Particle(x, y, this.hue))
         }
+    
     }
 
     addFastSprite(x: number, y: number){
-        this.hue += 1
-        for(let i = 0; i < 15; i++){
+        this.hue += 5
+        for(let i = 0; i < 20; i++){
             this.particlesArray.push(new FastParticle(x, y, this.hue))
         }
     }
@@ -49,8 +48,11 @@ export default class MouseParticleCanvas extends AbstractCanvas {
         // JUST HAVE TO UNCOMMENT BELOW TO TRACK
         this.mouse.x = x
         this.mouse.y = y
+        this.mouseEventFire = ! this.mouseEventFire
+        if(this.mouseEventFire){
+            this.addSprite(x, y)
+        }
         
-        this.addSprite(x, y)
     }
 
     clickMousePosition(x: number, y: number){
@@ -83,17 +85,21 @@ export default class MouseParticleCanvas extends AbstractCanvas {
                     const dx = this.particlesArray[i].x - this.particlesArray[j].x
                     const dy = this.particlesArray[i].y - this.particlesArray[j].y
                     const dist = Math.sqrt(dx * dx + dy * dy)
-                    if(dist < 50){
+                    if(dist < 60){
                         this.ctx.beginPath()
+                        const grad = this.ctx.createLinearGradient(this.particlesArray[i].x, this.particlesArray[i].y,this.particlesArray[j].x, this.particlesArray[j].y)
+                        grad.addColorStop(0, this.particlesArray[i].color)
+                        grad.addColorStop(1, this.particlesArray[j].color)
+                        this.ctx.strokeStyle = grad
                         this.ctx.moveTo(this.particlesArray[i].x, this.particlesArray[i].y)
                         this.ctx.lineTo(this.particlesArray[j].x, this.particlesArray[j].y)
                         this.ctx.stroke()
                     }
                 }
                 
-                if(this.particlesArray[i].size < 1) this.particlesArray.splice(i, 1)
             }
-
+            this.particlesArray = this.particlesArray.filter(particle => particle.size >= 1);
+            
             this.timer = 0
 
         } else this.timer += deltaTime
