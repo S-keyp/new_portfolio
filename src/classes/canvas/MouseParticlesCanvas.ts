@@ -28,14 +28,14 @@ export default class MouseParticleCanvas extends AbstractCanvas {
     }
 
     addSprite(x: number, y: number){
-        this.hue += 1
+        this.hue += .05
         for(let i = 0; i < 5; i++){
             this.particlesArray.push(new Particle(x, y, this.hue))
         }
     }
 
     addFastSprite(x: number, y: number){
-        this.hue += 1
+        this.hue += 15
         for(let i = 0; i < 15; i++){
             this.particlesArray.push(new FastParticle(x, y, this.hue))
         }
