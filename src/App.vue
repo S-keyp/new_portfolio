@@ -2,6 +2,7 @@
 import MainCanvas from './components/MainCanvas.vue'
 import SorterCanvas from './components/SorterCanvas.vue'
 import MouseParticlesCanvas from './components/MouseParticlesCanvas.vue'
+import MeteoAPI from './components/MeteoAPI.vue'
 </script>
 
 <template>
@@ -17,7 +18,8 @@ import MouseParticlesCanvas from './components/MouseParticlesCanvas.vue'
   <HelloWorld msg="Vite + Vue" /> -->
   <!-- <MainCanvas /> -->
   <!-- <SorterCanvas /> -->
-  <MouseParticlesCanvas />
+  <!-- <MouseParticlesCanvas /> -->
+  <MeteoAPI />
 </template>
 
 <style scoped>
