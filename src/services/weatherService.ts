@@ -1,15 +1,5 @@
 import axios from 'axios';
 
-interface Weather {
-    base: string,
-    clouds: {all: number}
-    coord: {
-        lon: number,
-        lat: number
-    }
-}
-
-// Replace with your OpenWeatherMap API key
 const API_KEY = process.env.OPENWEATHERMAP_API_KEY
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
