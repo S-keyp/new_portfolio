@@ -18,8 +18,8 @@ import MeteoAPI from './components/MeteoAPI.vue'
   <HelloWorld msg="Vite + Vue" /> -->
   <!-- <MainCanvas /> -->
   <!-- <SorterCanvas /> -->
-  <!-- <MouseParticlesCanvas /> -->
-  <MeteoAPI />
+  <MouseParticlesCanvas />
+  <!-- <MeteoAPI /> -->
 </template>
 
 <style scoped>
