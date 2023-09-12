@@ -7,12 +7,12 @@ export default class Particle {
     color: string
 
     constructor(x: number, y: number, hue: number){
-        this.x = x + 5 * Math.random()
-        this.y = y + 5 * Math.random()
+        this.x = (x + 5 * Math.random()) | 0
+        this.y = (y + 5 * Math.random()) | 0
         this.color = `hsl( ${hue}, 100%, 50%)`
-        this.size = Math.random() * 15 + 1
-        this.vx = Math.random() * 7 - 3.5
-        this.vy = Math.random() * 7 - 3.5
+        this.size = (Math.random() * 15 + 1) | 0
+        this.vx = (Math.random() * 7 - 3.5) | 0
+        this.vy = (Math.random() * 7 - 3.5) | 0
 
         this.update()
     }
@@ -25,17 +25,12 @@ export default class Particle {
 
     draw( ctx : CanvasRenderingContext2D){
         
-        // let dx = this.mouse.x - x
-        // let dy = this.mouse.y - y
-        // let distance = Math.sqrt(dx * dx + dy * dy)
-        // if(distance < 100) {
-            ctx.fillStyle = this.color
-            ctx.strokeStyle = this.color
-            ctx.beginPath()
-            ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
-            ctx.fill()
-            ctx.stroke()
-        // }
+        ctx.fillStyle = this.color
+        ctx.strokeStyle = this.color
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI)
+        ctx.fill()
+        ctx.stroke()
     }
     
 

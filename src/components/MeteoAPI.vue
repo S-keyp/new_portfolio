@@ -1,5 +1,6 @@
 <script lang="ts">
 import weatherService from './../services/weatherService.ts'
+import Miniboussole from './Miniboussole.vue'
 
 interface Forecast {
     clouds: {
@@ -72,13 +73,16 @@ export default {
     methods: {
         async fetchWeather() {
             try {
-                const response = await weatherService.getWeatherForCity('Sète')
+                const response = await weatherService.getWeatherForCity('paris')
                 this.forecasts = response.data as Forecasts
                 console.log(this.forecasts)
             } catch (error) {
                 console.error('Error fetching weather:', error);
             }
         },
+    },
+    components: {
+        Miniboussole,
     }
 }
 </script>
@@ -88,9 +92,9 @@ export default {
         <h1>Weather in Montpellier</h1>
         <button @click="fetchWeather">Fetch forecast</button>
         <template v-if="forecasts">
-            <p>Wind forecast for {{ forecasts.city.name }}: {{ forecasts.list[0].wind.speed }} knot{{ forecasts.list[0].wind.speed > 1 ? 's' : ''}}</p>
+            <p>Wind forecast for {{ forecasts.city.name }}: {{ forecasts.list[0].wind.speed * 3.6 }} Km/h</p>
 
-            <p v-for="forecast in forecasts.list">{{ forecast.wind.deg }} deg {{ (forecast.wind.speed * 1.852).toFixed(2) }}  Km/h, gust: {{ (forecast.wind.gust * 1.852).toFixed(2) }}  Km/h</p>
+            <p v-for="forecast in forecasts.list"><Miniboussole :windangle="forecast.wind.deg + 90" /> deg {{ (forecast.wind.speed * 3.6).toFixed(2) }}  Km/h, gust: {{ (forecast.wind.gust * 3.6).toFixed(2) }}  Km/h at: {{ forecast.dt_txt }}</p>
         </template>
         <template v-else>
             <p>No Forecast found</p>
