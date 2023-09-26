@@ -8,14 +8,15 @@ export default defineConfig({
 
   plugins: [
     replace({
-      'process.env.OPENWEATHERMAP_API_KEY': JSON.stringify('7bddfc91ef12d670b8ae3ba9b9c51e45')
+      'process.env.OPENWEATHERMAP_API_KEY': JSON.stringify('7bddfc91ef12d670b8ae3ba9b9c51e45'),
+      'preventAssignment': true,
     }),
     vue()
   ],
 
   build: {
     rollupOptions: {
-
+      
     }
   }
 })
