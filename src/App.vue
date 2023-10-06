@@ -1,8 +1,9 @@
 <script setup>
-import MainCanvas from './components/MainCanvas.vue'
-import SorterCanvas from './components/SorterCanvas.vue'
-import MouseParticlesCanvas from './components/MouseParticlesCanvas.vue'
-import MeteoAPI from './components/MeteoAPI.vue'
+// import MainCanvas from './components/MainCanvas.vue'
+// import SorterCanvas from './components/SorterCanvas.vue'
+// import MouseParticlesCanvas from './components/MouseParticlesCanvas.vue'
+// import MeteoAPI from './components/MeteoAPI.vue'
+import LinesCanvas from './components/LinesCanvas.vue'
 </script>
 
 <template>
@@ -18,7 +19,8 @@ import MeteoAPI from './components/MeteoAPI.vue'
   <HelloWorld msg="Vite + Vue" /> -->
   <!-- <MainCanvas /> -->
   <!-- <SorterCanvas /> -->
-  <MouseParticlesCanvas />
+  <!-- <MouseParticlesCanvas /> -->
+  <LinesCanvas />
   <!-- <MeteoAPI /> -->
 </template>
 
