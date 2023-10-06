@@ -17,36 +17,60 @@ export default class Shape {
         this.y = y
         this.edgeCount = edgeCount
 
-        this.createBaseShape()
-        this.createFullShape()
+        this.createShape()
     }
 
-    createBaseShape(){
+    createShape(){
         for(let i = 0; i < this.edgeCount; i++){
-            this.baseShape.push({
-                pointName: String.fromCharCode(97 + i),
-                pointVal: {
-                    x: parseFloat((this.x + 500 * i * Math.random()).toFixed(3)),
-                    y: parseFloat((this.y + 500 * i * Math.random()).toFixed(3))
+            if(i == 0){
+                this.baseShape.push({
+                    pointName: String.fromCharCode(97 + i),
+                    pointVal: {
+                        x: parseFloat((this.x).toFixed(3)),
+                        y: parseFloat((this.y).toFixed(3))
+                    }
+                })
+                continue
+            }
+            if(Math.random() > .5){
+                if(Math.random() > .5){
+                    this.baseShape.push({
+                        pointName: String.fromCharCode(97 + i),
+                        pointVal: {
+                            x: parseFloat((this.x + 750 * Math.random()).toFixed(3)),
+                            y: parseFloat((this.y + 750 * Math.random()).toFixed(3))
+                        }
+                    })
+                }else {
+                    this.baseShape.push({
+                        pointName: String.fromCharCode(97 + i),
+                        pointVal: {
+                            x: parseFloat((this.x - 750 * Math.random()).toFixed(3)),
+                            y: parseFloat((this.y - 750 * Math.random()).toFixed(3))
+                        }
+                    })
                 }
-            })
+            } else {
+                if(Math.random() > .5){
+                    this.baseShape.push({
+                        pointName: String.fromCharCode(97 + i),
+                        pointVal: {
+                            x: parseFloat((this.x + 750 * Math.random()).toFixed(3)),
+                            y: parseFloat((this.y - 750 * Math.random()).toFixed(3))
+                        }
+                    })
+                }else {
+                    this.baseShape.push({
+                        pointName: String.fromCharCode(97 + i),
+                        pointVal: {
+                            x: parseFloat((this.x - 750 * Math.random()).toFixed(3)),
+                            y: parseFloat((this.y + 750 * Math.random()).toFixed(3))
+                        }
+                    })
+                }
+            }
         }
 
-        for(let i = 1; i <= this.baseShape.length -1; i++){
-            this.linesArray.push(
-                new Line(
-                    i,
-                    this.baseShape[i - 1].pointVal.x, 
-                    this.baseShape[i - 1].pointVal.y,
-                    this.baseShape[i].pointVal.x, 
-                    this.baseShape[i].pointVal.y,
-                    i * 255
-                )
-            )
-        }
-    }
-
-    createFullShape(){
         for(let i = this.edgeCount; i < 300; i+=this.edgeCount) {
             for(let j = this.edgeCount; j > 0; j--){
                 this.baseShape.push({

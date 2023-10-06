@@ -40,7 +40,7 @@ export default class LineCanvas extends AbstractCanvas {
         this.mouse.x = x
         this.mouse.y = y
 
-        this.shapesArray.push(new Shape(x, y, 3))
+        this.shapesArray.push(new Shape(x, y, 5))
     }
 
     
