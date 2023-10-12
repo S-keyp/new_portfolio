@@ -27,7 +27,7 @@ export default class Line {
         this.yAlpha = y1
         this.color = '#fff'
         this.alpha = 0
-        this.color = `hsl( ${hue + x1}, 100%, 50%)`
+        this.color = `hsl( ${hue + x1 - y1}, 40%, 50%)`
 
 
         this.update()
@@ -37,7 +37,7 @@ export default class Line {
         // return if the previous line isn't finished
         if(!this.go) return
         if(this.alpha >= 1) return
-        else this.alpha += 0.25
+        else this.alpha += 1 // 0.25
 
         this.xAlpha = lerp1D(this.x1, this.x2, this.alpha)
         this.yAlpha = lerp1D(this.y1, this.y2, this.alpha)

@@ -1,8 +1,9 @@
 import AbstractCanvas from "./AbstractCanvas"
-import Shape from "../objects/Shape"
+import RandomShape from "../objects/RandomShape"
+import CircleShape from "../objects/CircleShape"
 
 export default class LineCanvas extends AbstractCanvas {
-    shapesArray: Shape[] = []
+    shapesArray: RandomShape[] = []
     
     mouseEventFire = true
     hue = 0
@@ -30,17 +31,16 @@ export default class LineCanvas extends AbstractCanvas {
         // this.mouse.y = y
         // this.mouseEventFire = ! this.mouseEventFire
         // if(this.mouseEventFire){
-        //     // Draw line from this point to a random other
-        //     // this.addSprite(x, y)
+            // Draw line from this point to a random other
+            // this.addSprite(x, y)
         // }
-        
     }
 
     clickMousePosition(x: number, y: number){
         this.mouse.x = x
         this.mouse.y = y
 
-        this.shapesArray.push(new Shape(x, y, 5))
+        this.shapesArray.push(new CircleShape(x, y, 5))
     }
 
     
@@ -51,9 +51,9 @@ export default class LineCanvas extends AbstractCanvas {
         
         
         if(this.timer > this.interval){
-            // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.fillStyle = 'rgba(0,0,0,0.15)'
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+            // this.ctx.fillStyle = 'rgba(0,0,0,0.15)'
+            // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
             
             for(let i = 0; i < this.shapesArray.length; i++){
                 this.shapesArray[i].update()

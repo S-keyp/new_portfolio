@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // import MainCanvas from './components/MainCanvas.vue'
 // import SorterCanvas from './components/SorterCanvas.vue'
 // import MouseParticlesCanvas from './components/MouseParticlesCanvas.vue'
@@ -17,8 +17,8 @@ import LinesCanvas from './components/LinesCanvas.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" /> -->
-  <!-- <MainCanvas /> -->
-  <!-- <SorterCanvas /> -->
+  <!-- <MainCanvas />
+  <SorterCanvas /> -->
   <!-- <MouseParticlesCanvas /> -->
   <LinesCanvas />
   <!-- <MeteoAPI /> -->
