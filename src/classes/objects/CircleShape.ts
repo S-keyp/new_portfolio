@@ -2,11 +2,13 @@ import AbstractShape from "./abstract/AbstractShape";
 import { lerp1D } from "../utils/MathFunc";
 
 export default class CircleShape extends AbstractShape {
-    radius = Math.random() * 600
-    angle = 2 * Math.PI / (this.edgeCount - 1)
+    // TODO: modify the radius with GUI
+    radius: number
+    angle = 2 * Math.PI / this.edgeCount
 
-    constructor(x: number, y: number, edgeCount: number){
+    constructor(x: number, y: number, edgeCount: number, radius= 600){
         super(x, y, edgeCount)
+        this.radius = Math.random() * radius
         this.createShape()
         this.createLines()
     }
@@ -21,7 +23,7 @@ export default class CircleShape extends AbstractShape {
                 }
             })
         }
-        for(let i = this.edgeCount + 1; i < 1000; i+=this.edgeCount) {
+        for(let i = this.edgeCount; i < 1000; i+=this.edgeCount) {
             for(let j = this.edgeCount; j > 0; j--){
                 this.baseShape.push({
                     pointName: String.fromCharCode(97 + this.edgeCount + i),

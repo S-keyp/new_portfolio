@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
-import LinesCanvas from '../classes/canvas/LinesCanvas';
+    import { computed, onMounted, ref } from 'vue';
+    import LinesCanvas from '../classes/canvas/LinesCanvas';
+    import Gui from './gui/Gui.vue';
 
     let linesCanvas = null as LinesCanvas | null;
 
+
     function resizeCanvas(){
         linesCanvas?.resizeCanvas(window.innerWidth, window.innerHeight)
+    }
+
+    function logLda(lda: number){
+        console.log('lda: ', lda);
     }
 
     let canvasWidth = computed(function(){
@@ -31,6 +37,7 @@ import LinesCanvas from '../classes/canvas/LinesCanvas';
 </script>
 
 <template>
+    <Gui @lda="logLda"></Gui>
     <canvas id="linesCanvas" :width="canvasWidth" :height="canvasHeight"></canvas>
 </template>
 
@@ -40,5 +47,6 @@ import LinesCanvas from '../classes/canvas/LinesCanvas';
     top: 0;
     left: 0;
     background: #000;
+    z-index: 1;
 }
 </style>

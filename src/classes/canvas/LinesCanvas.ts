@@ -40,7 +40,8 @@ export default class LineCanvas extends AbstractCanvas {
         this.mouse.x = x
         this.mouse.y = y
 
-        this.shapesArray.push(new CircleShape(x, y, 5))
+        // TODO: update circle edge count with GUI
+        this.shapesArray.push(new CircleShape(x, y, 4))
     }
 
     
