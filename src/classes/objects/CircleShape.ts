@@ -1,4 +1,4 @@
-import AbstractShape from "./abstract/AbstractShape";
+import AbstractShape from "./abstract/AbstractLineShape";
 import { lerp1D } from "../utils/MathFunc";
 
 export default class CircleShape extends AbstractShape {

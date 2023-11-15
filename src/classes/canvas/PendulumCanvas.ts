@@ -1,0 +1,77 @@
+import AbstractCanvas from "./AbstractCanvas"
+import RandomShape from "../objects/RandomShape"
+import SimpleCircle from "../objects/SimpleCircle"
+
+export default class PendulumCanvas extends AbstractCanvas {
+    shapesArray: RandomShape[] = []
+    
+    cercle = new SimpleCircle()
+
+    mouseEventFire = true
+    hue = 0
+
+    lastTime = 0
+    interval = 1000 / 60
+    timer = 0
+
+    mouse = {
+        x: this.canvas.width / 2,
+        y: this.canvas.height / 2
+    }
+
+
+    constructor() {
+        super('linesCanvas')
+
+        this.animate(this.lastTime)
+
+    }
+    
+    setMousePosition(x: number, y: number){
+        // TO BE KEPT JUST IN CASE
+        // this.mouse.x = x
+        // this.mouse.y = y
+        // this.mouseEventFire = ! this.mouseEventFire
+        // if(this.mouseEventFire){
+            // Draw line from this point to a random other
+            // this.addSprite(x, y)
+        // }
+    }
+
+    clickMousePosition(x: number, y: number){
+        this.mouse.x = x
+        this.mouse.y = y
+
+
+        // TODO: update circle edge count with GUI
+        // this.shapesArray.push(new CircleShape(x, y, 4))
+    }
+
+    
+    
+    animate(timeStamp: DOMHighResTimeStamp){  
+        const deltaTime = timeStamp - this.lastTime
+        this.lastTime = timeStamp
+        
+        
+        if(this.timer > this.interval){
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+            this.ctx.fillStyle = `rgba(255,0,0,0.5)`
+            this.ctx.fillRect(this.mouse.x - 75, this.mouse.y - 75, 150, 150)
+            // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+            
+            for(let i = 0; i < this.shapesArray.length; i++){
+                this.shapesArray[i].update()
+                this.shapesArray[i].draw(this.ctx)
+            }
+            
+            
+            this.timer = 0
+
+        } else this.timer += deltaTime
+        
+        this.animationId = requestAnimationFrame(this.animate.bind(this))
+    }
+
+
+}

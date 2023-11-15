@@ -1,7 +1,7 @@
 <script setup lang="ts">
-    import { computed, onMounted, ref } from 'vue';
-    import LinesCanvas from '../classes/canvas/LinesCanvas';
-    import Gui from './gui/Gui.vue';
+    import { computed, onMounted } from 'vue';
+    import LinesCanvas from '../../classes/canvas/LinesCanvas';
+    import Gui from './../gui/Gui.vue';
 
     let linesCanvas = null as LinesCanvas | null;
 

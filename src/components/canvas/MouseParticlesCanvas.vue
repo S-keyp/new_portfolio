@@ -1,5 +1,5 @@
 <script lang="ts">
-import MouseParticleCanvas from './../classes/canvas/MouseParticlesCanvas.ts'
+import MouseParticleCanvas from './../../classes/canvas/MouseParticlesCanvas.ts'
 
 export default {
     data(){
