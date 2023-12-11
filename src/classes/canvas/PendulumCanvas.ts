@@ -1,11 +1,9 @@
 import AbstractCanvas from "./AbstractCanvas"
-import RandomShape from "../objects/RandomShape"
 import SimpleCircle from "../objects/SimpleCircle"
 
 export default class PendulumCanvas extends AbstractCanvas {
-    shapesArray: RandomShape[] = []
+    shapesArray: SimpleCircle[] = []
     
-    cercle = new SimpleCircle()
 
     mouseEventFire = true
     hue = 0
@@ -42,9 +40,18 @@ export default class PendulumCanvas extends AbstractCanvas {
         this.mouse.x = x
         this.mouse.y = y
 
-
-        // TODO: update circle edge count with GUI
-        // this.shapesArray.push(new CircleShape(x, y, 4))
+        if (this.shapesArray.length > 0) {
+            const prevCircle = this.shapesArray[this.shapesArray.length - 1];
+            const newCircle = new SimpleCircle(prevCircle.currentCoords.x, prevCircle.currentCoords.y);
+            
+            // Update the center coordinates before updating current coordinates
+            newCircle.updateCenter(prevCircle.currentCoords.x, prevCircle.currentCoords.y);
+            
+            this.shapesArray.push(newCircle);
+        } else {
+            this.shapesArray.push(new SimpleCircle(x, y));
+        }
+        
     }
 
     
@@ -55,17 +62,21 @@ export default class PendulumCanvas extends AbstractCanvas {
         
         
         if(this.timer > this.interval){
+            this.hue += 5
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.fillStyle = `rgba(255,0,0,0.5)`
-            this.ctx.fillRect(this.mouse.x - 75, this.mouse.y - 75, 150, 150)
+            this.ctx.fillStyle = `hsl(${this.hue} 100% 50% / 0.95)`
             // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+
             
             for(let i = 0; i < this.shapesArray.length; i++){
-                this.shapesArray[i].update()
-                this.shapesArray[i].draw(this.ctx)
+                if(i == 0) this.shapesArray[i].updateCurrentCoords()
+                else {
+                    this.shapesArray[i].update(this.shapesArray[i - 1])
+                    this.shapesArray[i].draw(this.ctx)
+                }
             }
             
-            
+    
             this.timer = 0
 
         } else this.timer += deltaTime
