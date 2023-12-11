@@ -4,11 +4,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from './../pages/Homepage.vue'
 
 
-import FlowFieldView from './../views/canvas/FlowFieldView.vue'
-import LinesCanvasViewVue from '../views/canvas/LinesCanvasView.vue'
-import MouseParticlesView from './../views/canvas/MouseParticlesView.vue'
-import PendulumView from './../views/canvas/PendulumView.vue'
-import SorterCanvasView from './../views/canvas/SorterCanvasView.vue'
+import FlowFieldView from './../components/views/canvas/FlowFieldView.vue'
+import LinesCanvasViewVue from '../components/views/canvas/LinesCanvasView.vue'
+import MouseParticlesView from './../components/views/canvas/MouseParticlesView.vue'
+import PendulumView from './../components/views/canvas/PendulumView.vue'
+import SorterCanvasView from './../components/views/canvas/SorterCanvasView.vue'
 
 
 const router = createRouter({

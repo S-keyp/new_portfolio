@@ -27,7 +27,7 @@ export default class MouseParticleCanvas extends AbstractCanvas {
 
     addSprite(x: number, y: number){
         this.hue += .05
-        for(let i = 0; i < 5; i++){
+        for(let i = 0; i < 2; i++){
             this.particlesArray.push(new Particle(x, y, this.hue))
         }
     
@@ -35,7 +35,7 @@ export default class MouseParticleCanvas extends AbstractCanvas {
 
     addFastSprite(x: number, y: number){
         this.hue += 15
-        for(let i = 0; i < 15; i++){
+        for(let i = 0; i < 25; i++){
             this.particlesArray.push(new FastParticle(x, y, this.hue))
         }
     }
@@ -99,6 +99,7 @@ export default class MouseParticleCanvas extends AbstractCanvas {
                 
             }
             this.particlesArray = this.particlesArray.filter(particle => particle.size >= 1);
+            console.log('this.particlesArray.length = ', this.particlesArray.length);
             
             this.timer = 0
 

@@ -1,8 +1,8 @@
 export default class SimpleCircle {
     hue = 0
-    radius = Math.random() * 150
+    radius = 150 // Math.random() * 250
     angle = Math.random() * 2 * Math.PI 
-    angleVelocity = Math.random() * .05
+    angleVelocity = Math.random() * .09
 
     center = {
         x: 500,
@@ -29,8 +29,8 @@ export default class SimpleCircle {
     }
 
     update(previousCircle: SimpleCircle){
-        const gravity = .01
-        const damping = .9999
+        const gravity = .001
+        const damping = 1 //.9
         
         const acceleration = (-1 * gravity / this.radius) * Math.sin(this.angle)
         this.angleVelocity += acceleration

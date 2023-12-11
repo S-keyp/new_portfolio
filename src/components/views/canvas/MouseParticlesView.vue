@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MouseParticlesCanvas from '../../components/canvas/MouseParticlesCanvas.vue'
+import MouseParticlesCanvas from '../../../components/canvas/MouseParticlesCanvas.vue'
 </script>
 
 <template>
