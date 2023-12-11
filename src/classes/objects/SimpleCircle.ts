@@ -1,9 +1,9 @@
 export default class SimpleCircle {
-
-    alpha = 0
+    hue = 0
     radius = Math.random() * 150
-    angle = Math.PI / 2
-    angleVelocity = .1
+    angle = Math.random() * 2 * Math.PI 
+    angleVelocity = Math.random() * .1
+
     center = {
         x: 500,
         y: 500
@@ -13,7 +13,8 @@ export default class SimpleCircle {
         y: 500
     }
 
-    constructor(x: number, y: number) {
+    constructor(x: number, y: number, hue: number) {
+        this.hue = hue
         this.updateCenter(x,y)
     }
 
@@ -41,6 +42,7 @@ export default class SimpleCircle {
     }
 
     draw(ctx: CanvasRenderingContext2D){
+        ctx.fillStyle = `hsl(${this.hue} 100% 50% / 0.95)`
         ctx.beginPath()
         ctx.arc(this.currentCoords.x, this.currentCoords.y, 2, 0, Math.PI * 2)
         ctx.fill()

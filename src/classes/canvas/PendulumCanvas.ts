@@ -42,14 +42,14 @@ export default class PendulumCanvas extends AbstractCanvas {
 
         if (this.shapesArray.length > 0) {
             const prevCircle = this.shapesArray[this.shapesArray.length - 1];
-            const newCircle = new SimpleCircle(prevCircle.currentCoords.x, prevCircle.currentCoords.y);
+            const newCircle = new SimpleCircle(prevCircle.currentCoords.x, prevCircle.currentCoords.y, this.hue);
             
             // Update the center coordinates before updating current coordinates
             newCircle.updateCenter(prevCircle.currentCoords.x, prevCircle.currentCoords.y);
             
             this.shapesArray.push(newCircle);
         } else {
-            this.shapesArray.push(new SimpleCircle(x, y));
+            this.shapesArray.push(new SimpleCircle(x, y, this.hue));
         }
         
     }
@@ -62,11 +62,10 @@ export default class PendulumCanvas extends AbstractCanvas {
         
         
         if(this.timer > this.interval){
-            this.hue += .1
+            this.hue += 1
             // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.fillStyle = `hsl(0 0% 0% / 0.05)`
+            this.ctx.fillStyle = `hsl(0 0% 0% / 0.0005)`
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.fillStyle = `hsl(${this.hue} 100% 50% / 0.95)`
 
             
             for(let i = 0; i < this.shapesArray.length; i++){
