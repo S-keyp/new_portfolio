@@ -1,5 +1,5 @@
 <script lang="ts">
-import FlowFieldEffect from './../classes/canvas/FlowFieldEffect.ts'
+import FlowFieldEffect from '../../classes/canvas/FlowFieldEffect.ts'
 
 export default {
     data(){

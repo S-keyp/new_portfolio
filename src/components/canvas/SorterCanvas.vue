@@ -1,5 +1,5 @@
 <script lang="ts">
-import SorterCanvas from './../classes/canvas/SorterCanvas.ts'
+import SorterCanvas from '../../classes/canvas/SorterCanvas.ts'
 
 export default {
     data(){

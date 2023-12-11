@@ -29,8 +29,8 @@ export default class SimpleCircle {
     }
 
     update(previousCircle: SimpleCircle){
-        const gravity = .1
-        const damping = .999
+        const gravity = .01
+        const damping = .9999
         
         const acceleration = (-1 * gravity / this.radius) * Math.sin(this.angle)
         this.angleVelocity += acceleration

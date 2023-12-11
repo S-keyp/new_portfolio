@@ -64,7 +64,7 @@ export default class PendulumCanvas extends AbstractCanvas {
         if(this.timer > this.interval){
             this.hue += 1
             // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.fillStyle = `hsl(0 0% 0% / 0.0005)`
+            this.ctx.fillStyle = `hsl(0 0% 0% / 0.05)`
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
             
@@ -74,6 +74,12 @@ export default class PendulumCanvas extends AbstractCanvas {
                     this.shapesArray[i].update(this.shapesArray[i - 1])
                     this.shapesArray[i].draw(this.ctx)
                 }
+
+                // if(i == 0) this.shapesArray[i].updateCurrentCoords()
+                // else if(i == this.shapesArray.length - 1) {
+                //     this.shapesArray[i].update(this.shapesArray[i - 1])
+                //     this.shapesArray[i].draw(this.ctx)
+                // } else this.shapesArray[i].update(this.shapesArray[i - 1])
             }
             
     
