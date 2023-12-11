@@ -1,7 +1,7 @@
 export default class SimpleCircle {
 
     alpha = 0
-    radius = 30
+    radius = Math.random() * 150
     angle = Math.PI / 2
     angleVelocity = .1
     center = {
@@ -28,13 +28,13 @@ export default class SimpleCircle {
     }
 
     update(previousCircle: SimpleCircle){
-        const gravity = 0.4
-        const damping = 0.99
+        const gravity = .1
+        const damping = .999
         
         const acceleration = (-1 * gravity / this.radius) * Math.sin(this.angle)
         this.angleVelocity += acceleration
         this.angleVelocity *= damping
-      
+        // this.angleVelocity = .01
         this.angle += this.angleVelocity
         this.updateCenter(previousCircle.currentCoords.x, previousCircle.currentCoords.y)
         this.updateCurrentCoords()

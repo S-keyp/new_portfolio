@@ -62,10 +62,11 @@ export default class PendulumCanvas extends AbstractCanvas {
         
         
         if(this.timer > this.interval){
-            this.hue += 5
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+            this.hue += .1
+            // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+            this.ctx.fillStyle = `hsl(0 0% 0% / 0.05)`
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
             this.ctx.fillStyle = `hsl(${this.hue} 100% 50% / 0.95)`
-            // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
             
             for(let i = 0; i < this.shapesArray.length; i++){
