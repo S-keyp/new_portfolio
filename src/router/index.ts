@@ -1,24 +1,60 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+
 import Homepage from './../pages/Homepage.vue'
-import PendulumView from './../views/PendulumView.vue'
-// import Login from './../views/Login.vue'
-// import Profile from './../views/Profile.vue'
-// import ListUser from './../views/ListUser.vue'
-// import Test from './../views/Test.vue'
+
+
+import FlowFieldView from './../views/canvas/FlowFieldView.vue'
+import LinesCanvasViewVue from '../views/canvas/LinesCanvasView.vue'
+import MouseParticlesView from './../views/canvas/MouseParticlesView.vue'
+import PendulumView from './../views/canvas/PendulumView.vue'
+import SorterCanvasView from './../views/canvas/SorterCanvasView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+
+    // PAGES
     {
       path: '/',
-      name: 'login',
+      name: 'homepage',
       component: Homepage
     },
+
+
+
+
+
+
+
+
+    // VIEWS
     {
-        path: '/pendulum',
-        name: 'pendulum',
-        component: PendulumView
-      },
+      path: '/flow-field',
+      name: 'flow-field',
+      component: FlowFieldView
+    },
+    {
+      path: '/line-canvas',
+      name: 'line-canvas',
+      component: LinesCanvasViewVue
+    },
+    {
+      path: '/mouse-particles',
+      name: 'mouse-particles',
+      component: MouseParticlesView
+    },
+    {
+      path: '/pendulum',
+      name: 'pendulum',
+      component: PendulumView
+    },
+    {
+      path: '/sorter-canvas',
+      name: 'sorter-canvas',
+      component: SorterCanvasView
+    },
     // {
     //   path: '/register',
     //   name: 'register',

@@ -2,7 +2,7 @@ export default class SimpleCircle {
     hue = 0
     radius = Math.random() * 150
     angle = Math.random() * 2 * Math.PI 
-    angleVelocity = Math.random() * .1
+    angleVelocity = Math.random() * .05
 
     center = {
         x: 500,

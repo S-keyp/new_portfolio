@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PendulumCanvas from './../components/canvas/PendulumCanvas.vue'
+import PendulumCanvas from '../../components/canvas/PendulumCanvas.vue'
 </script>
 
 <template>

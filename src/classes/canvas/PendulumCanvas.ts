@@ -34,7 +34,7 @@ export default class PendulumCanvas extends AbstractCanvas {
             // Draw line from this point to a random other
             // this.addSprite(x, y)
         // }
-    }
+    }   
 
     clickMousePosition(x: number, y: number){
         this.mouse.x = x

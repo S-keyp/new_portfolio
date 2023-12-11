@@ -1,5 +1,6 @@
 <script lang="ts">
 import FlowFieldEffect from '../../classes/canvas/FlowFieldEffect.ts'
+// import FlowFieldEffect from '../../classes/canvas/FlowFieldEffect_save_V1.ts'
 
 export default {
     data(){
@@ -43,8 +44,6 @@ export default {
 </script>
 
 <template>
-    <h1>S-keyp</h1>
-    <h2>Portfolio</h2>
     <canvas ref="canvas" id="flowFieldEffect" :width="canvasWidth" :height="canvasHeight"></canvas>
 </template>
 

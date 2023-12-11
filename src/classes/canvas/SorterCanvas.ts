@@ -75,8 +75,8 @@ export default class SorterCanvas extends AbstractCanvas {
         const colorValue = Math.floor(cellValue * 360) // 360
         // this.ctx.fillStyle = `hsl( ${colorValue} ${(1 - cellValue) * 100}% ${cellValue * 100}% / ${cellValue} )`
 
-        const saturation = 100 // - cellValue * 100; // Reverse the value for better contrast
-        const lightness = 50 // cellValue * 100; // Adjust as needed
+        const saturation = 100
+        const lightness = 50 
 
         const my_gradient = this.ctx.createLinearGradient(x, y, x, y - cellValue * this.canvas.height);
         my_gradient.addColorStop(1, `hsl( ${colorValue}deg ${saturation}% ${lightness}% )`);
