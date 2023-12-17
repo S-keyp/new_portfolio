@@ -3,6 +3,9 @@ import SimpleCircle from "../objects/SimpleCircle"
 
 export default class PendulumCanvas extends AbstractCanvas {
     shapesArray: SimpleCircle[] = []
+
+    gravity = .0000000001
+    damping = 1
     
 
     mouseEventFire = true
@@ -44,8 +47,7 @@ export default class PendulumCanvas extends AbstractCanvas {
             const prevCircle = this.shapesArray[this.shapesArray.length - 1];
             const newCircle = new SimpleCircle(prevCircle.currentCoords.x, prevCircle.currentCoords.y, this.hue);
             
-            // Update the center coordinates before updating current coordinates
-            newCircle.updateCenter(prevCircle.currentCoords.x, prevCircle.currentCoords.y);
+            newCircle.updateCenter(this.mouse.x, this.mouse.y);
             
             this.shapesArray.push(newCircle);
         } else {
@@ -53,8 +55,33 @@ export default class PendulumCanvas extends AbstractCanvas {
         }
         
     }
-
     
+    updateCoords(){
+        for(let i = 0; i < this.shapesArray.length; i++){
+            if(i == 0) continue
+            const acceleration = (-1 * this.gravity / this.shapesArray[i].radius) * Math.sin(this.shapesArray[i].angle)
+            this.shapesArray[i].angleVelocity += acceleration
+            this.shapesArray[i].angleVelocity *= this.damping
+            this.shapesArray[i].angle += this.shapesArray[i].angleVelocity
+
+            this.shapesArray[i].center.x = this.shapesArray[i - 1].currentCoords.x
+            this.shapesArray[i].center.y = this.shapesArray[i - 1].currentCoords.y
+
+            this.shapesArray[i].currentCoords.x = this.shapesArray[i].center.x + this.shapesArray[i].radius * Math.sin(this.shapesArray[i].angle)
+            this.shapesArray[i].currentCoords.y = this.shapesArray[i].center.y + this.shapesArray[i].radius * Math.cos(this.shapesArray[i].angle) 
+            
+        }
+    }
+
+    drawAll(){
+        this.ctx.beginPath()
+        for(let i = 0; i < this.shapesArray.length; i++){
+            this.ctx.fillStyle = `hsl(${this.shapesArray[i].hue} 100% 50% / 0.95)`
+            this.ctx.fillRect(this.shapesArray[i].currentCoords.x, this.shapesArray[i].currentCoords.y, 20, 4)
+        }
+        this.ctx.fill()
+    }
+
     
     animate(timeStamp: DOMHighResTimeStamp){  
         const deltaTime = timeStamp - this.lastTime
@@ -63,25 +90,11 @@ export default class PendulumCanvas extends AbstractCanvas {
         
         if(this.timer > this.interval){
             this.hue += 1
-            // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.fillStyle = `hsl(0 0% 0% / .005)`
+            this.ctx.fillStyle = `hsl(0 0% 0% / .15)`
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
-            
-            for(let i = 0; i < this.shapesArray.length; i++){
-                if(i == 0) this.shapesArray[i].updateCurrentCoords()
-                else {
-                    this.shapesArray[i].update(this.shapesArray[i - 1])
-                    this.shapesArray[i].draw(this.ctx)
-                }
-
-                // if(i == 0) this.shapesArray[i].updateCurrentCoords()
-                // else if(i == this.shapesArray.length - 1) {
-                //     this.shapesArray[i].update(this.shapesArray[i - 1])
-                //     this.shapesArray[i].draw(this.ctx)
-                // } else this.shapesArray[i].update(this.shapesArray[i - 1])
-            }
-            
+            this.updateCoords()
+            this.drawAll()
     
             this.timer = 0
 

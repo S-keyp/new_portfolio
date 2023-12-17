@@ -1,12 +1,12 @@
 export default class SimpleCircle {
     hue = 0
-    radius = 150 // Math.random() * 250
+    radius = Math.random() * 300 // Math.random() * 250
     angle = Math.random() * 2 * Math.PI 
-    angleVelocity = Math.random() * .19
+    angleVelocity = (Math.random() * 100 * .12) / 200 
 
     center = {
-        x: 500,
-        y: 500
+        x: 1000,
+        y: 1000
     }
     currentCoords = {
         x: 500,
@@ -15,7 +15,7 @@ export default class SimpleCircle {
 
     constructor(x: number, y: number, hue: number) {
         this.hue = hue
-        this.updateCenter(x,y)
+        this.updateCenter(x, y)
     }
 
     updateCenter(x: number, y: number) {
@@ -23,29 +23,13 @@ export default class SimpleCircle {
         this.center.y = y
     }
 
-    updateCurrentCoords = () => {
-        this.currentCoords.x = this.center.x + this.radius * Math.sin(this.angle)
-        this.currentCoords.y = this.center.y + this.radius * Math.cos(this.angle)
-    }
 
     update(previousCircle: SimpleCircle){
-        const gravity = .00000000000000001
-        const damping = 1 //.9
-        
-        const acceleration = (-1 * gravity / this.radius) * Math.sin(this.angle)
-        this.angleVelocity += acceleration
-        this.angleVelocity *= damping
-        // this.angleVelocity = .01
-        this.angle += this.angleVelocity
-        this.updateCenter(previousCircle.currentCoords.x, previousCircle.currentCoords.y)
-        this.updateCurrentCoords()
+       
     }
 
     draw(ctx: CanvasRenderingContext2D){
-        ctx.fillStyle = `hsl(${this.hue} 100% 50% / 0.95)`
-        ctx.beginPath()
-        ctx.arc(this.currentCoords.x, this.currentCoords.y, 2, 0, Math.PI * 2)
-        ctx.fill()
+        
     }
 
 
