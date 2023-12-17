@@ -1,10 +1,9 @@
-import AbstractCanvas from "./AbstractCanvas"
+import AbstractCanvas3d from "./AbstractCanvas3d"
 import SimpleCircle from "../objects/SimpleCircle"
 
-export default class PendulumCanvas extends AbstractCanvas {
+export default class Canvas3d extends AbstractCanvas3d {
     shapesArray: SimpleCircle[] = []
     
-
     mouseEventFire = true
     hue = 0
 
@@ -19,9 +18,9 @@ export default class PendulumCanvas extends AbstractCanvas {
 
 
     constructor() {
-        super('linesCanvas')
+        super('canvas3d')
 
-        this.animate(this.lastTime)
+        // this.animate(this.lastTime)
 
     }
     
@@ -57,37 +56,37 @@ export default class PendulumCanvas extends AbstractCanvas {
     
     
     animate(timeStamp: DOMHighResTimeStamp){  
-        const deltaTime = timeStamp - this.lastTime
-        this.lastTime = timeStamp
+        // const deltaTime = timeStamp - this.lastTime
+        // this.lastTime = timeStamp
         
         
-        if(this.timer > this.interval){
-            this.hue += 1
+        // if(this.timer > this.interval){
+        //     this.hue += 1
             // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-            this.ctx.fillStyle = `hsl(0 0% 0% / .005)`
-            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+            // this.ctx.fillStyle = `hsl(0 0% 0% / .005)`
+            // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
             
-            for(let i = 0; i < this.shapesArray.length; i++){
-                if(i == 0) this.shapesArray[i].updateCurrentCoords()
-                else {
-                    this.shapesArray[i].update(this.shapesArray[i - 1])
-                    this.shapesArray[i].draw(this.ctx)
-                }
+            // for(let i = 0; i < this.shapesArray.length; i++){
+            //     if(i == 0) this.shapesArray[i].updateCurrentCoords()
+            //     else {
+            //         this.shapesArray[i].update(this.shapesArray[i - 1])
+            //         this.shapesArray[i].draw(this.ctx)
+            //     }
 
                 // if(i == 0) this.shapesArray[i].updateCurrentCoords()
                 // else if(i == this.shapesArray.length - 1) {
                 //     this.shapesArray[i].update(this.shapesArray[i - 1])
                 //     this.shapesArray[i].draw(this.ctx)
                 // } else this.shapesArray[i].update(this.shapesArray[i - 1])
-            }
+            // }
             
     
-            this.timer = 0
+    //         this.timer = 0
 
-        } else this.timer += deltaTime
+    //     } else this.timer += deltaTime
         
-        this.animationId = requestAnimationFrame(this.animate.bind(this))
+    //     this.animationId = requestAnimationFrame(this.animate.bind(this))
     }
 
 

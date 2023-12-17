@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from './../pages/Homepage.vue'
 
 
+import Canvas3dView from './../components/views/canvas/Canvas3dView.vue'
 import FlowFieldView from './../components/views/canvas/FlowFieldView.vue'
 import LinesCanvasViewVue from '../components/views/canvas/LinesCanvasView.vue'
 import MouseParticlesView from './../components/views/canvas/MouseParticlesView.vue'
@@ -54,6 +55,11 @@ const router = createRouter({
       path: '/sorter-canvas',
       name: 'sorter-canvas',
       component: SorterCanvasView
+    },
+    {
+      path: '/canvas3d',
+      name: 'canvas3d',
+      component: Canvas3dView
     },
     // {
     //   path: '/register',

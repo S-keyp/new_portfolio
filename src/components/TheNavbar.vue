@@ -23,6 +23,9 @@
                 <li class="dropdown-list-item">
                     <router-link to="/flow-field">Flow Field</router-link>
                 </li>
+                <li class="dropdown-list-item">
+                    <router-link to="/canvas3d">Canvas 3D</router-link>
+                </li>
             </ul>
         </div>
         <router-link to="/pendulum">Pendulum</router-link>
