@@ -73,7 +73,7 @@ export default {
     methods: {
         async fetchWeather() {
             try {
-                const response = await weatherService.getWeatherForCity('paris')
+                const response = await weatherService.getWeatherForCity('montpellier')
                 this.forecasts = response.data as Forecasts
                 console.log(this.forecasts)
             } catch (error) {

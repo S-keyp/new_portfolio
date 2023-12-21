@@ -99,7 +99,6 @@ export default class MouseParticleCanvas extends AbstractCanvas {
                 
             }
             this.particlesArray = this.particlesArray.filter(particle => particle.size >= 1);
-            console.log('this.particlesArray.length = ', this.particlesArray.length);
             
             this.timer = 0
 
