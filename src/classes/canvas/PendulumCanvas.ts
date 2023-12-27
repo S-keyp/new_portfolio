@@ -67,6 +67,7 @@ export default class PendulumCanvas extends AbstractCanvas {
         let previous = null
         for (let current of this.shapesArray) {
             if (previous != null) {
+                current.hue += 0.1 // can be commented out
                 const acceleration = (-1 * this.gravity / current.radius) * Math.sin(current.angle)
                 current.angleVelocity += acceleration
                 current.angleVelocity *= this.damping
