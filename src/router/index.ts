@@ -10,6 +10,7 @@ import LinesCanvasViewVue from '../components/views/canvas/LinesCanvasView.vue'
 import MouseParticlesView from './../components/views/canvas/MouseParticlesView.vue'
 import PendulumView from './../components/views/canvas/PendulumView.vue'
 import SorterCanvasView from './../components/views/canvas/SorterCanvasView.vue'
+import TestBetterCanvasVue from '../components/canvas/TestBetterCanvas.vue'
 
 
 const router = createRouter({
@@ -25,6 +26,13 @@ const router = createRouter({
 
 
 
+
+    // QUICK TEST
+    {
+      path:'/test',
+      name: 'test',
+      component: TestBetterCanvasVue
+    },
 
 
 
