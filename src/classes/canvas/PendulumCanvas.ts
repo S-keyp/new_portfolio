@@ -24,11 +24,11 @@ export default class PendulumCanvas extends AbstractCanvas {
     constructor() {
         super('linesCanvas')
 
-        // for (let i = 0; i < 10000; i++) {
+        // for (let i = 0; i < 1000; i++) {
         //     this.clickMousePosition(500, 500)
         // }
         this.animate(this.lastTime)
-
+        
         // this.ctx.scale(1, 1)
 
     }
@@ -56,7 +56,9 @@ export default class PendulumCanvas extends AbstractCanvas {
 
             this.shapesArray.push(newCircle);
         } else {
-            this.shapesArray.push(new SimpleCircle(x, y, this.hue));
+            let tempPart = new SimpleCircle(x, y, this.hue)
+            tempPart.updateCenter(x, y);
+            this.shapesArray.push(tempPart);
         }
 
     }
@@ -76,6 +78,9 @@ export default class PendulumCanvas extends AbstractCanvas {
                 current.currentCoords.x = current.center.x + current.radius * Math.sin(current.angle)
                 current.currentCoords.y = current.center.y + current.radius * Math.cos(current.angle)
 
+            } else {
+                current.currentCoords.x = current.center.x
+                current.currentCoords.y = current.center.y
             }
             previous = current
         }
@@ -87,35 +92,27 @@ export default class PendulumCanvas extends AbstractCanvas {
 
             this.ctx.save()
             this.ctx.translate(this.shapesArray[i].currentCoords.x, this.shapesArray[i].currentCoords.y)
-            this.ctx.fillRect(0, 0, 20, 4)
+            this.ctx.fillRect(0, 0, 4, 4)
             this.ctx.restore()
         }
     }
 
 
     animate(timeStamp: DOMHighResTimeStamp) {
-        const deltaTime = timeStamp - this.lastTime
         this.lastTime = timeStamp
 
-
-        // if (this.timer > this.interval) {
         while (this.timer < timeStamp) {
             this.hue += 1
 
             this.updateCoords()
 
-
-
             this.timer += 1000 / 60
-            console.log('update')
         }
-
-
 
         this.ctx.fillStyle = `hsl(0 0% 0% / .05)`
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.drawAll()
-        console.log('draw')
+
         this.animationId = requestAnimationFrame(this.animate.bind(this))
     }
 
