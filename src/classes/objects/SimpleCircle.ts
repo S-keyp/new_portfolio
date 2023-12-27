@@ -1,16 +1,16 @@
 export default class SimpleCircle {
     hue = 0
-    radius = Math.random() * 150 // Math.random() * 250
-    angle = Math.random() * 2 * Math.PI 
-    angleVelocity = (Math.random() * .0000012) / 2000000000000000
+    radius = 150 // Math.random() * 150 // Math.random() * 250
+    angle = Math.random() > .5 ? 10 : -10 // Math.random() * 2 * Math.PI 
+    angleVelocity = (Math.random() * .01) / 9000
 
     center = {
         x: 1000,
         y: 1000
     }
     currentCoords = {
-        x: 100,
-        y: 100
+        x: -10,
+        y: -10
     }
 
     constructor(x: number, y: number, hue: number) {

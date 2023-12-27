@@ -4,8 +4,8 @@ import SimpleCircle from "../objects/SimpleCircle"
 export default class PendulumCanvas extends AbstractCanvas {
     shapesArray: SimpleCircle[] = []
 
-    gravity = .1
-    damping = 0.999999
+    gravity = .05
+    damping = 1
 
 
     mouseEventFire = true
@@ -24,7 +24,7 @@ export default class PendulumCanvas extends AbstractCanvas {
     constructor() {
         super('linesCanvas')
 
-        // for (let i = 0; i < 1000; i++) {
+        // for (let i = 0; i < 10; i++) {
         //     this.clickMousePosition(500, 500)
         // }
         this.animate(this.lastTime)
@@ -109,7 +109,7 @@ export default class PendulumCanvas extends AbstractCanvas {
             this.timer += 1000 / 60
         }
 
-        this.ctx.fillStyle = `hsl(0 0% 0% / .05)`
+        this.ctx.fillStyle = `hsl(0 0% 0% / .0009)`
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.drawAll()
 
