@@ -93,7 +93,7 @@ export default class PendulumCanvas extends AbstractCanvas {
 
             this.ctx.save()
             this.ctx.translate(this.shapesArray[i].currentCoords.x, this.shapesArray[i].currentCoords.y)
-            this.ctx.fillRect(0, 0, 4, 4)
+            this.ctx.fillRect(0, 0, 1, 1)
             this.ctx.restore()
         }
     }

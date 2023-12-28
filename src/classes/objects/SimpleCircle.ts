@@ -22,15 +22,4 @@ export default class SimpleCircle {
         this.center.x = x
         this.center.y = y
     }
-
-
-    update(previousCircle: SimpleCircle){
-       
-    }
-
-    draw(ctx: CanvasRenderingContext2D){
-        
-    }
-
-
 }

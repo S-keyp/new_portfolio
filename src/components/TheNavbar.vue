@@ -32,7 +32,7 @@
             </ul>
         </div>
         <router-link to="/pendulum">Pendulum</router-link>
-        <router-link to="/">Curiosities</router-link>
+        <router-link to="/meteo">Meteo API</router-link>
     </nav>
 </template>
 

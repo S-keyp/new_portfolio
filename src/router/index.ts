@@ -11,6 +11,7 @@ import MouseParticlesView from './../components/views/canvas/MouseParticlesView.
 import PendulumView from './../components/views/canvas/PendulumView.vue'
 import SorterCanvasView from './../components/views/canvas/SorterCanvasView.vue'
 import TestBetterCanvasVue from '../components/canvas/TestBetterCanvas.vue'
+import MeteoAPIVue from '../components/MeteoAPI.vue'
 
 
 const router = createRouter({
@@ -32,6 +33,14 @@ const router = createRouter({
       path:'/test',
       name: 'test',
       component: TestBetterCanvasVue
+    },
+    
+    
+    //Meteo
+    {
+      path:'/meteo',
+      name: 'meteo',
+      component: MeteoAPIVue
     },
 
 
@@ -69,26 +78,6 @@ const router = createRouter({
       name: 'canvas3d',
       component: Canvas3dView
     },
-    // {
-    //   path: '/register',
-    //   name: 'register',
-    //   component: Register,
-    // },
-    // {
-    //   path: '/profile',
-    //   name: 'profile',
-    //   component: Profile
-    // },
-    // {
-    //   path: '/user_list',
-    //   name: 'user_list',
-    //   component: ListUser
-    // },
-    // {
-    //   path: '/test',
-    //   name: 'test',
-    //   component: Test
-    // },
   ]
 })
 
