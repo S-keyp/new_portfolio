@@ -11,7 +11,7 @@ import MouseParticlesView from './../components/views/canvas/MouseParticlesView.
 import PendulumView from './../components/views/canvas/PendulumView.vue'
 import SorterCanvasView from './../components/views/canvas/SorterCanvasView.vue'
 import TestBetterCanvasVue from '../components/canvas/TestBetterCanvas.vue'
-import MeteoAPIVue from '../components/MeteoAPI.vue'
+import MeteoAPIVue from '../components/meteoApi/MeteoAPI.vue'
 
 
 const router = createRouter({
