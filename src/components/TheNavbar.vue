@@ -1,38 +1,101 @@
 <script setup lang="ts">
+import LinkItem from '../interface/LinkItem';
+import Dropdown from './gui/Dropdown.vue';
 
+interface Entry {
+    title: string,
+    ref?: string,
+    subElements?: Array<LinkItem>
+}
+
+const menu: Array<Entry> = [
+    {
+        title: "Home",
+        ref: "/"
+    },
+    {
+        title: "Curiosities",
+        subElements: [
+            {
+               title: "Sorter Canvas",
+               ref:"/sorter-canvas" 
+            },   
+            {
+               title: "Line Canvas",
+               ref:"/line-canvas" 
+            },   
+            {
+               title: "Pendulum",
+               ref:"/pendulum" 
+            },   
+            {
+               title: "Mouse Particle",
+               ref:"/mouse-particles" 
+            },   
+            {
+               title: "Flow Field",
+               ref:"/flow-field"  
+            },   
+            {
+               title: "Canvas 3D",
+               ref:"/canvas-3d"  
+            },   
+            {
+               title: "Test",
+               ref:"/test"  
+            },   
+        ]
+    },
+    {
+        title: "Meteo API",
+        ref: "/meteo"
+    }
+]
+
+for (let item of menu){
+    console.log('item', item);
+}
 </script>
 
 <template>
     <nav class="navbar">
-        <router-link to="/">Home</router-link>
-        <div class="dropdown">
-            <h4 class="dropdown-title">Curiosities <span class="dropdown-title-img">⬇️</span></h4>
-            <ul class="dropdown-list" >
-                <li class="dropdown-list-item">
-                    <router-link to="/sorter-canvas">Sorter canvas</router-link>
-                </li>
-                <li class="dropdown-list-item">
-                    <router-link to="/line-canvas">Line Canvas</router-link>
-                </li>
-                <li class="dropdown-list-item">
-                    <router-link to="/pendulum">Pendulum</router-link>
-                </li>
-                <li class="dropdown-list-item">
-                    <router-link to="/mouse-particles">Mouse Particles</router-link>
-                </li>
-                <li class="dropdown-list-item">
-                    <router-link to="/flow-field">Flow Field</router-link>
-                </li>
-                <li class="dropdown-list-item">
-                    <router-link to="/canvas3d">Canvas 3D</router-link>
-                </li>
-                <li class="dropdown-list-item">
-                    <router-link to="/test">Test</router-link>
-                </li>
-            </ul>
-        </div>
-        <router-link to="/pendulum">Pendulum</router-link>
-        <router-link to="/meteo">Meteo API</router-link>
+        <template v-for="item of menu">
+            <Dropdown v-if="item.hasOwnProperty('subElements')" :drop-down="item" />
+            <router-link v-else :to="item.ref!">{{ item.title }}</router-link>
+        </template>
+        <!-- <Dropdown :drop-down="{
+        title: 'Curiosities',
+        subElements: [
+            {
+               title: 'Sorter Canvas',
+               ref:'/sorter-canvas' 
+            },   
+            {
+               title: 'Line Canvas',
+               ref:'/line-canvas' 
+            },   
+            {
+               title: 'Pendulum',
+               ref:'/pendulum' 
+            },   
+            {
+               title: 'Mouse Particle',
+               ref:'/mouse-particle' 
+            },   
+            {
+               title: 'Flow Field',
+               ref:'/flow-field'  
+            },   
+            {
+               title: 'Canvas 3D',
+               ref:'/canvas-3d'  
+            },   
+            {
+               title: 'Test',
+               ref:'/test'  
+            },   
+        ]
+    }" /> -->
     </nav>
 </template>
 

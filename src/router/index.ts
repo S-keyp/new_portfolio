@@ -74,8 +74,8 @@ const router = createRouter({
       component: SorterCanvasView
     },
     {
-      path: '/canvas3d',
-      name: 'canvas3d',
+      path: '/canvas-3d',
+      name: 'canvas-3d',
       component: Canvas3dView
     },
   ]
