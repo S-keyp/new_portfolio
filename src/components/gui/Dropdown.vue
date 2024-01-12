@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-
-const props = defineProps(['dropDown'])
-
-onMounted(() => {
-    console.log('LinkItem', props);
-})
+defineProps(['dropDown'])
 </script>
 
 <template>

@@ -4,13 +4,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from './../pages/Homepage.vue'
 
 
-import Canvas3dView from './../components/views/canvas/Canvas3dView.vue'
-import FlowFieldView from './../components/views/canvas/FlowFieldView.vue'
-import LinesCanvasViewVue from '../components/views/canvas/LinesCanvasView.vue'
-import MouseParticlesView from './../components/views/canvas/MouseParticlesView.vue'
-import PendulumView from './../components/views/canvas/PendulumView.vue'
-import SorterCanvasView from './../components/views/canvas/SorterCanvasView.vue'
-import TestBetterCanvasVue from '../components/canvas/TestBetterCanvas.vue'
+import Canvas3d from './../components/canvas/3d.vue'
+import FlowField from './../components/canvas/FlowField.vue'
+import LinesCanvasVue from '../components/canvas/Lines.vue'
+import MouseParticles from './../components/canvas/MouseParticles.vue'
+import Pendulum from './../components/canvas/Pendulum.vue'
+import SorterCanvas from './../components/canvas/Sorter.vue'
+import TestBetterCanvasVue from '../components/canvas/Test.vue'
 import MeteoAPIVue from '../components/meteoApi/MeteoAPI.vue'
 
 
@@ -47,36 +47,36 @@ const router = createRouter({
 
 
 
-    // VIEWS
+    // Canvas Components
     {
       path: '/flow-field',
       name: 'flow-field',
-      component: FlowFieldView
+      component: FlowField
     },
     {
       path: '/line-canvas',
       name: 'line-canvas',
-      component: LinesCanvasViewVue
+      component: LinesCanvasVue
     },
     {
       path: '/mouse-particles',
       name: 'mouse-particles',
-      component: MouseParticlesView
+      component: MouseParticles
     },
     {
       path: '/pendulum',
       name: 'pendulum',
-      component: PendulumView
+      component: Pendulum
     },
     {
       path: '/sorter-canvas',
       name: 'sorter-canvas',
-      component: SorterCanvasView
+      component: SorterCanvas
     },
     {
       path: '/canvas-3d',
       name: 'canvas-3d',
-      component: Canvas3dView
+      component: Canvas3d
     },
   ]
 })
