@@ -12,3 +12,29 @@ defineProps(['dropDown'])
         </ul>
     </div>
 </template>
+
+<style scoped>
+.dropdown{
+    position: relative;
+}
+
+.dropdown-list {
+    display: none;
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-list {
+    display: block;
+    position: absolute;
+}
+
+.dropdown-list-item {
+    width: max-content;
+    text-decoration: none;
+    padding: 6px 12px;
+}
+
+.dropdown-list-item a {
+    text-decoration: none;
+}
+</style>

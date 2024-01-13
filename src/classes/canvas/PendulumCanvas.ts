@@ -89,7 +89,7 @@ export default class PendulumCanvas extends AbstractCanvas {
 
     drawAll() {
         for (let i = 0; i < this.shapesArray.length; i++) {
-            this.ctx.fillStyle = `hsl(${this.shapesArray[i].hue} 100% 50% / 0.95)`
+            this.ctx.fillStyle = `hsl(${this.shapesArray[i].hue} 100% 60% / 0.95)`
 
             this.ctx.save()
             this.ctx.translate(this.shapesArray[i].currentCoords.x, this.shapesArray[i].currentCoords.y)
@@ -110,8 +110,8 @@ export default class PendulumCanvas extends AbstractCanvas {
             this.timer += 1000 / 60
         }
 
-        this.ctx.fillStyle = `hsl(0 0% 0% / .0009)`
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        // this.ctx.fillStyle = `hsl(0 0% 0% / .0009)`
+        // this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         this.drawAll()
 
         this.animationId = requestAnimationFrame(this.animate.bind(this))
