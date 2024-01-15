@@ -50,6 +50,10 @@ const menu: Array<Entry> = [
         title: "Meteo API",
         ref: "/meteo"
     },
+    {
+        title: "Three JS",
+        ref: "/three"
+    },
 ]
 </script>
 

@@ -12,6 +12,7 @@ import Pendulum from './../components/canvas/Pendulum.vue'
 import SorterCanvas from './../components/canvas/Sorter.vue'
 import TestBetterCanvasVue from '../components/canvas/Test.vue'
 import MeteoAPIVue from '../components/meteoApi/MeteoAPI.vue'
+import TestThreeJsVue from '../components/threejs/TestThreeJs.vue'
 
 
 const router = createRouter({
@@ -24,6 +25,7 @@ const router = createRouter({
       name: 'homepage',
       component: Homepage
     },
+    
 
 
 
@@ -33,6 +35,13 @@ const router = createRouter({
       path:'/test',
       name: 'test',
       component: TestBetterCanvasVue
+    },
+
+    //THREEJS
+    {
+      path: '/three',
+      name: 'three',
+      component: TestThreeJsVue
     },
     
     
