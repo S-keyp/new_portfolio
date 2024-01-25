@@ -2,7 +2,7 @@
   "name": "vite",
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://s-keyp.github.io/",
+  "homepage": "https://s-keyp.github.io/new_portfolio/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
