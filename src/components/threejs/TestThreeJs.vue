@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { computed, onMounted } from 'vue';
+    import { onMounted } from 'vue';
     import CanvasThreejs from '../../classes/canvas/threejs/Test';
 
     let canvasThree = null as CanvasThreejs | null;
