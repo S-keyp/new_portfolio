@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // base: '/new_portfolio/',   HAVE TO PUT IT BACK FOR GH PAGE
+
   plugins: [
     vue()
   ],

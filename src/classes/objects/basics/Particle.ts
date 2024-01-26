@@ -6,7 +6,7 @@ export default class Particle {
     private saturation= 0
     private light= 0
 
-    constructor(x: number, y: number, hue: number = 0, saturation: number = 50, light: number = 70) {
+    constructor(x: number, y: number, hue: number = Math.random() * 255, saturation: number = 70, light: number = 80) {
         this.setCoordinates(x, y);
         this.hue = hue
         this.saturation = saturation
