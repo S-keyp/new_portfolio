@@ -89,6 +89,7 @@ export default class TestBetterCanvas extends AbstractCanvas {
 
     // perlinBezier(start, ...args, end){
 
+    
     // }
 
     animate(timeStamp: DOMHighResTimeStamp) {
