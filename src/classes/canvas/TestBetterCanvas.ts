@@ -34,28 +34,15 @@ export default class TestBetterCanvas extends AbstractCanvas {
     constructor() {
         super('testBetterCanvas')
 
-        // for (let i = 0; i < 10; i++) {
-        //     this.particlesArr.push(new Particle(Math.random() * 100, Math.random() * 100))
-        // }
-
         this.animate(this.lastTime)
-
-
     }
 
     setMousePosition(x: number, y: number) {
-        // TO BE KEPT JUST IN CASE
-        // this.mouse.x = x
-        // this.mouse.y = y
-        // this.mouseEventFire = ! this.mouseEventFire
-        // if(this.mouseEventFire){
-        // Draw line from this point to a random other
-        // this.addSprite(x, y)
-        // }
+
     }
 
     randomDistribute(x: number, y: number) {
-        let r = Math.random() * 4 * Math.PI
+        let r = Math.random() * 2 * Math.PI
         return {
             x: x + r * 5 * Math.cos(r),
             y: y + r * 5 * Math.sin(r),
@@ -72,7 +59,6 @@ export default class TestBetterCanvas extends AbstractCanvas {
     clickMousePosition(x: number, y: number) {
         this.mouse = this.randomDistribute(x, y)
         let tempParticle = new Particle(this.mouse.x, this.mouse.y)
-        tempParticle.setRadius(this.calculateRadiusFromOrigin(tempParticle))
         this.particlesArr.push(tempParticle)
 
         if (this.particlesArr.length > 0 && this.prevParticle ) {
@@ -87,45 +73,38 @@ export default class TestBetterCanvas extends AbstractCanvas {
         this.prevParticle = tempParticle
     }
 
-    calculateRadiusFromOrigin(particle: Particle) {
-        return Math.sqrt(particle.getCoordinates().x * particle.getCoordinates().x + particle.getCoordinates().y * particle.getCoordinates().y)
-    }
-
-
-    updateCoords() {
-
-    }
-
     drawAll() {
         for (let i = 0; i < this.particlesArr.length; i++) {
             if (i == 0 || this.controlPts.length == 0) continue
             this.ctx.beginPath()
+            this.ctx.lineWidth = Math.random() * 2
+            this.ctx.fillStyle = this.particlesArr[i].getFullHsl()
             this.ctx.moveTo(this.particlesArr[i - 1].getCoordinates().x, this.particlesArr[i - 1].getCoordinates().y)
-            // this.ctx.fillStyle = this.particlesArr[i].getFullHsl()
+            // this.ctx.fillRect( this.particlesArr[i -1].getCoordinates().x, this.particlesArr[i - 1].getCoordinates().y, 2, 2)
             this.ctx.bezierCurveTo(this.controlPts[i].pt1x, this.controlPts[i].pt1y, this.controlPts[i].pt2x, this.controlPts[i].pt2y, this.particlesArr[i].getCoordinates().x, this.particlesArr[i].getCoordinates().y)
             this.ctx.strokeStyle = this.particlesArr[i].getFullHsl()
-            this.ctx.lineWidth = Math.random() * 10
             this.ctx.stroke()
-            // this.ctx.fill()
         }
     }
 
+    // perlinBezier(start, ...args, end){
+
+    // }
 
     animate(timeStamp: DOMHighResTimeStamp) {
-        const deltaTime = timeStamp - this.lastTime
         this.lastTime = timeStamp
 
+        while (this.timer < timeStamp) {
+            this.hue += 1
 
-        if (this.timer > this.interval) {
             this.hue += 1
             this.ctx.fillStyle = `hsl(0 0% 0% / .15)`
             this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-            this.updateCoords()
-            this.drawAll()
 
-            this.timer = 0
-
-        } else this.timer += deltaTime
+            this.timer += 1000 / 60
+        }
+       
+        this.drawAll()
 
         this.animationId = requestAnimationFrame(this.animate.bind(this))
     }

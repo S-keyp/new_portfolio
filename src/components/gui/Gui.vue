@@ -31,34 +31,7 @@ let c = computed(function(){
     logState()
     return shapeRadius.value
 })
-/**
- * [
- *  {
- *     groupTitle: title,
- *     groups: 
- *     [
- *         {
- *       
- *        },
- *        {
- *            
- *        },
- *     ]
- *  },
- *  {
- *     groupTitle: title,
- *     groups: 
- *     [
- *         {
- *       
- *        },
- *        {
- *            
- *        },
- *     ]
- *  },
- * ]
- */
+
 
 </script>
 
